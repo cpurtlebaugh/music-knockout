@@ -3,6 +3,6 @@ var TrophySchema = new mongoose.Schema({
 
 });
 
-var Trophy = mongoose.model('Tropy', TrophySchema);
+var Trophy = mongoose.model('Trophy', TrophySchema);
 
 module.exports = Trophy;
