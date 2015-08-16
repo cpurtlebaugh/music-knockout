@@ -1,13 +1,15 @@
 var User = require('../models/User');
 
 function getAll(req, res, next) {
-  var users = User.find({});
-  if(err) res.json({message: 'Could not find any useres'});
-  res.render('/users', {users: users});
+  var users = User.find({}, function(err){
+    if(err) res.json({message: 'Could not find any useres'});
+    res.render('/users', {users: users});
+  });
 }
 
 function newUser(req, res, next) {
-  res.render('../views/users/new');
+  // res.render('../views/users/new');
+  res.send("hello");
 }
 
 function createUser(req, res, next) {
