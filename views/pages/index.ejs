@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+  <body>
+    <div class="parallax-container">
+      <div class="parallax"><img src="images/parallax1.jpg"></div>
+    </div>
+    <nav>
+    <% include ../partials/nav.ejs %>
+    </nav>
+      
+        <h1><%= title %></h1>
+        <p>Welcome to <%= title %></p>
+
+     <footer>
+    <% include ../partials/footer.ejs %>
+    </footer>    
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+  </body>
+</html>
