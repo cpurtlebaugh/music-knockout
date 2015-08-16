@@ -2,31 +2,43 @@ var User = require('../models/User');
 
 function getAll(req, res, next) {
   var users = User.find({});
-  if(error) response.json({message: 'Could not find any useres'});
-  response.render('/users', {users: users});
+  if(err) res.json({message: 'Could not find any useres'});
+  res.render('/users', {users: users});
 }
 
 function newUser(req, res, next) {
-  response.render('../views/users/new');
+  res.render('../views/users/new');
 }
 
 function createUser(req, res, next) {
-  var user = new User(request.body.user);
-  User.save(function(error){
-    if (error) response.json({message: 'Could not create user b/c:' + error});
+  var user = new User(reqbody.user);
+  User.save(function(err){
+    if (err) res.json({message: 'Could not create user b/c:' + err});
   });
-  response.redirect('/');
+  res.redirect('/');
 }
 
 function showUser(req, res, next) {
-  var user = User.findByid({_id: req.params.id}, function(error, user){
-    if(error) response.json({message: 'Could not find that user b/c:' + error});
-    response.render('/users/show', {title: user.name, user: user});
+  var user = User.findByid({_id: req.params.id}, function(err, user){
+    if(err) res.json({message: 'Could not find that user b/c:' + err});
+    res.render('/users/show', {title: user.name, user: user});
   });
 }
 
 function editUser(req, res, next) {
+  User.findById({_id: req.params.id}, function(err, user) {
+    if (err) res.json({message: 'Could not find that user b/c' + err});
 
+    if (req.body.first_name) user.first_name = req.body.first_name;
+    if (req.body.first_name) user.last_name = req.body.last_name;
+    if (req.body.first_name) user.email = req.body.email;
+    if (req.body.first_name) user.password = req.body.password;
+
+    user.save(function(err){
+      if (err) res.json({message: 'Could not update your user profile b/c' + err});
+      res.json({message: 'Succesfully updated your user profile.'});
+    });
+  });
 }
 
 function updateUser(req, res, next) {
@@ -44,7 +56,7 @@ function updateUser(req, res, next) {
 }
 
 function deleteUser(req, res, next) {
-  User.findByIdAndRemove(requests.params.id, function(err){
+  User.findByIdAndRemove(req.params.id, function(err){
     if (err) res.json({message: 'Could not find that user b/c' + err})
       res.redirect('/users')
   });
