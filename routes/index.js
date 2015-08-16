@@ -10,5 +10,11 @@ router.get('/', function(req, res, next) {
 
 /* GET users listing. */
 router.get('/users', usersController.getAll);
+router.get('/users/new', usersController.newUser);
+router.post('/users', usersController.createUser);
+router.get('/users/:id', usersController.showUser);
+router.get('/users/:id', usersController.editUser);
+router.put('/users', usersController.updateUser);
+router.delete('/users', usersController.deleteUser);
 
 module.exports = router;

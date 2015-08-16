@@ -4,8 +4,8 @@ var UserSchema = new mongoose.Schema({
   last_name: String,
   email: String,
   password: String,
-  wins: Number,
-  trophies: [Trophies]
+  wins: Number
+  // trophies: [Trophies]
 });
 
 var User = mongoose.model('User', UserSchema);
