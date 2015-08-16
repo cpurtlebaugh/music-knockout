@@ -1,7 +1,9 @@
 var User = require('../models/User');
 
 function getAll(req, res, err) {
-
+  var users = User.find({});
+  if(error) response.json({message: 'Could not find any useres'});
+  response.render('/users', {users: users});
 }
 
 function newUser(req, res, err) {
@@ -19,7 +21,7 @@ function createUser(req, res, err) {
 function showUser(req, res, err) {
   var user = User.findByid({_id: req.params.id}, function(error, user){
     if(error) response.json({message: 'Could not find that user b/c:' + error});
-    response.render('/users/:id', {user: user});
+    response.render('/users/show', {title: user.name user: user});
   });
 }
 

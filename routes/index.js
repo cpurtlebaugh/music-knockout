@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var usersController = require('../controllers/usersController');
+var trophiesController = require('../controllers/trophiesController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,8 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET users listing. */
-router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/users', usersController.getAll);
 
 module.exports = router;
