@@ -82,19 +82,14 @@ function initiate() {
   //   });
   // });
 
-
-<<<<<<< HEAD
 console.log(songs);
 =======
   // console.log(songs);
-
->>>>>>> artist_array
 
 $("#welcomeIntro").on('click', function() {
   $(this).fadeOut(0);
 });
 
-<<<<<<< HEAD
 //paralax effect
 $(document).ready(function(){
   $('.parallax').parallax();
@@ -105,4 +100,3 @@ $(document).ready(function(){
   // });
 
 }
->>>>>>> artist_array
