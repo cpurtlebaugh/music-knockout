@@ -31,7 +31,7 @@ router.post('/login', passport.authenticate(
 
 // register
 router.get('/register', function (req, res) {
-  res.render('signup');
+  res.render('register');
 });
 
 // Handle the Submission of the Register Form
