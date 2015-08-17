@@ -2,14 +2,25 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 //Its Capital Case because its a class (contructor function)
 var LocalStrategy = require('passport-local').Strategy;
-
+var Facebook = require('./config/facebook.js')
 var routes = require('./routes/index');
+
+//FOR OAUTH
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+//END
 
 var app = express();
 
@@ -34,6 +45,9 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+//FOR OAUTH
+app.use(session({secret: process.env.SECRET}));
+// END
 app.use(passport.initialize());
 app.use(passport.session());
 
