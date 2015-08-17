@@ -7,15 +7,17 @@ var test = $.get("https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/rela
   x.artists.map(function(y){
     $.get("https://api.spotify.com/v1/artists/" + y.id + "/top-tracks?country=US").then(function(z){
       z.tracks.map(function(a){
-        songs.push(a.href);
-        console.log(songs);
+        console.log(a);
+        songs.push(a.id);
       });
     }).then(function(){
-        console.log(songs[1]);
-        $('body').append('<iframe src="https://embed.spotify.com/?uri=spotify:track:"' +  songs[0] + ' ' + 'width="300" height="80" frameborder="0" allowtransparency="true"></iframe>');
+        if (songs.length === 200) {
+          $('body').append('<audio style="display: none" src="' + songs[songs.length - 1].preview_url + '"' + 'preload="auto" controls autoplay></audio>');
+        }
     });
   });
 });
+
 
 console.log(songs);
 
