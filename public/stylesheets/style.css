@@ -1,11 +1,49 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
+  background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
 }
 
 a {
   color: #00B7FF;
 }
 
-.parallax-container {
-  height: 500px;
+.container {
+  width: 100%;
+  height: 740px;
+  max-height: 1000px;
+  position: relative;
 }
+
+.row {
+  width: 100%;
+}
+
+.chat {
+  position:absolute; 
+  bottom:0;
+  width: 100%;
+  border: 1px solid black;
+  height: 100px;
+  background-color: rgba(000, 000, 000, .5);
+}
+
+.players {
+  height: 500px;
+  border-radius: 5px;
+  background-color: rgba(000, 099, 099, .4);
+
+}
+
+.game {
+  border: 1px solid black;
+  height: 100%;
+}
+
+.leader {
+  border-radius: 5px;
+  height: 500px;
+  background-color: rgba(000, 099, 099, .4);
+}
+
+
