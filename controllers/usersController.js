@@ -64,8 +64,6 @@ function deleteUser(req, res, next) {
   });
 }
 
-
-
 module.exports = {
   getAll:     getAll,
   newUser:    newUser,
