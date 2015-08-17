@@ -83,20 +83,20 @@ function initiate() {
   // });
 
 console.log(songs);
-=======
   // console.log(songs);
 
-$("#welcomeIntro").on('click', function() {
-  $(this).fadeOut(0);
-});
+  $("#welcomeIntro").on('click', function() {
+    $(this).fadeOut(0);
+  });
 
-//paralax effect
-$(document).ready(function(){
-  $('.parallax').parallax();
-});
-=======
-  // $(document).ready(function(){
-  //   $('.parallax').parallax();
-  // });
+  //paralax effect
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+    // $(document).ready(function(){
+    //   $('.parallax').parallax();
+    // });
 
 }
+
+initiate();
