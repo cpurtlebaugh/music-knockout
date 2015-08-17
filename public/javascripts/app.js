@@ -21,8 +21,11 @@ var test = $.get("https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/rela
 
 console.log(songs);
 
+$("#welcomeIntro").on('click', function() {
+  $(this).fadeOut(0);
+});
 
-
-// $(document).ready(function(){
-//   $('.parallax').parallax();
-// });
+//paralax effect
+$(document).ready(function(){
+  $('.parallax').parallax();
+});
