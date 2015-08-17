@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 //Tara's test page ;)
-router.get('/taraindex', function(req, res, next) {
-  res.render('taraindex', { title: 'Tara;)' });
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Music Knockout)' });
 });
 
 

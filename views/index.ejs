@@ -3,27 +3,39 @@
 <head>
   <% include ./partials/head.ejs %>
 </head>
+
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="six columns">
-          <h1>Test</h1>
-          <h2>Test</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde voluptatem molestias, ad architecto sint minima ipsum facilis consequuntur et labore ex assumenda eaque reprehenderit dicta eum recusandae veritatis, ipsam nam?</p>
-          <button class="button">First Test</button>
-        </div>
-        <div class="six columns">
-          <h1>Test</h1>
-          <h2>Test</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi dolore quisquam commodi. Veritatis quasi, exercitationem, dolorem doloribus nihil quaerat cum commodi quidem quia non cupiditate id atque aliquid perspiciatis, facilis.</p>
-          <button class="button button-primary">Test</button>
-        </div>
+    <!-- paralax effect -->
+    <div class="parallax-container">
+      <div class="parallax">
+        <img src="/images/concert.jpg">
       </div>
     </div>
-    <p>Welcome to <%= title %></p>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="javascripts/app.js"></script>
-    <!-- Compiled and minified JavaScript -->
+    <!-- end paralax effect -->
+    <div class="container">
+      <div class="row">
+        <div class="two columns players">players</div>
+        <div class="eight columns game">
+        </div>
+        <div class="two columns leader">leader</div>
+        <div class ="offset-by-three six columns welcome" id="welcomeIntro">
+          <% include ./partials/welcome.ejs %>
+        </div>
+      </div>
+
+
+      <div class="row chat">
+        <div class="twelve columns">chat</div>
+      </div>
+
+
+    </div>
+    <footer>
+      <% include ./partials/footer.ejs %>
+    </footer>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src='/javascripts/app.js'></script>
+        <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
   </body>
 </html>
