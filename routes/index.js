@@ -90,6 +90,15 @@ function isLoggedIn(req, res, next) {
 }
 
 
+//FACEBOOK
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'user_birthday', 'user_location']}));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+//END
+
 
 // Trophies
 router.get('/trophies', usersController.getAll);
