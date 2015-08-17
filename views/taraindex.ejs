@@ -5,21 +5,36 @@
 </head>
 
   <body>
+    <!-- paralax effect -->
+    <div class="parallax-container">
+      <div class="parallax">
+        <img src="/images/concert.jpg">
+      </div>
+    </div>
+    <!-- end paralax effect -->
     <div class="container">
       <div class="row">
         <div class="two columns players">players</div>
-        <div class="eight columns game">game</div>
+        <div class="eight columns game"> 
+        </div>
         <div class="two columns leader">leader</div>
+        <div class ="offset-by-three six columns welcome" id="welcomeIntro">
+          <% include ./partials/welcome.ejs %>
+        </div>
       </div>
-       <div class="row chat">
+
+    
+      <div class="row chat">
         <div class="twelve columns">chat</div>
       </div>
+
+     
     </div>
-    <% include ./partials/nav.ejs %>
     <footer>
       <% include ./partials/footer.ejs %>
     </footer>    
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src='/javascripts/app.js'></script>
         <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
   </body>

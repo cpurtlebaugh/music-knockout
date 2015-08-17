@@ -17,17 +17,15 @@ var test = $.get("https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/rela
     });
   });
 });
-<<<<<<< HEAD
-  console.log(x.artists);
-});
-=======
 
 
 console.log(songs);
 
+$("#welcomeIntro").on('click', function() {
+  $(this).fadeOut(0);
+});
 
-
-// $(document).ready(function(){
-//   $('.parallax').parallax();
-// });
->>>>>>> 5976b0753fb633f04c8c66c8fdeca1f97ccefa21
+//paralax effect
+$(document).ready(function(){
+  $('.parallax').parallax();
+});
