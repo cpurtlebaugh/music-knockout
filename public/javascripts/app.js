@@ -63,6 +63,13 @@ function initiate() {
     for (var i = 0; i < 4; i++) {
       var test = getArtistTopTracks(chosenRelatedArtists[i].id).then(function(data){
         relatedSongs.push(data.tracks[0]);
+        if (relatedSongs.length === 4) {
+          $('body').append('<audio style="display: none" src="' + chosenTopSong.preview_url + '"' + 'preload="auto" controls autoplay></audio>');
+          // AJAX calls, done. Data received. Need to append the quiz table.
+
+          var gameTable = '<form action="#"><p><input name="group1" type="radio" id="test1" /><label for="test1">' + chosenTopSong.name + ' - ' + chosenTopSong.artists[0].name +'</label></p><p><input name="group1" type="radio" id="test2" /><label for="test2">Yellow</label></p><p><input class="with-gap" name="group1" type="radio" id="test3"  /><label for="test3">Green</label></p><p><input name="group1" type="radio" id="test4" /><label for="test4">Brown</label></p><p><input name="group1" type="radio" id="test4" /><label for="test4">Brown</label></p></form>';
+          $('body').append(gameTable);
+        }
       });
     }
 
