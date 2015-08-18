@@ -3,14 +3,14 @@
 <head>
 
 <head>
-  <% include ./partials/head.ejs %>
-  <title>Signup</title>
+  <% include ../partials/head.ejs %>
+  <title>Sign up</title>
 </head>
 
 <body class="container">
   <br>
   <div class="row text-center">
-    <h1>Signup</h1>
+    <h1>Sign up</h1>
   </div>
   <div class="row">
     <div class="col-xs-4 col-xs-offset-4">
@@ -33,8 +33,11 @@
               <input type="password" id="pw" class="form-control" name="password">
             </div>
 
-            <div class="form-group text-right">
+            <div class="form-group text-left">
               <input type="submit" class="btn btn-warning" value="Register">
+            </div>
+
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="false" onlogin="postlogin" data-default-audience="everyone">
             </div>
 
           </form>
@@ -42,5 +45,21 @@
       </div>
     </div>
   </div>
+
+    <script>
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=610303955738935";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function postlogin() {
+      window.location = "/";
+    };
+    </script>
+
 </body>
 </html>

@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 //login
 router.get('/login', function(req, res) {
-  res.render('login', {user : req.user});
+  res.render('users/login', {user : req.user});
 });
 
 
@@ -31,7 +31,7 @@ router.post('/login', passport.authenticate(
 
 // register
 router.get('/register', function (req, res) {
-  res.render('signup');
+  res.render('users/register');
 });
 
 // Handle the Submission of the Register Form
@@ -89,6 +89,15 @@ function isLoggedIn(req, res, next) {
   res.redirect('/login');
 }
 
+
+//FACEBOOK
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'user_birthday', 'user_location']}));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+//END
 
 
 // Trophies
