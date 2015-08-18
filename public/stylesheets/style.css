@@ -80,6 +80,7 @@ title {
 nav {
   background: rgba(0,0,0, .30);
   position: fixed;
+  z-index: 5;
 }
 
 /*forms*/
