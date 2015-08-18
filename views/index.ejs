@@ -5,20 +5,26 @@
 </head>
 
   <body>
+    <!-- nav bar -->
+    <nav>
+      <% include ./partials/nav.ejs %>
+    </nav>
     <!-- paralax effect -->
     <div class="parallax-container">
       <div class="parallax">
         <img src="/images/concert.jpg">
+
       </div>
     </div>
-    <!-- end paralax effect -->
+
+    <!-- game -->
     <div class="container">
       <div class="row">
-        <div class="two columns players">players</div>
-        <div class="eight columns game">
+        <div class="col s2 players">players</div>
+        <div class="col s8 game">
         </div>
-        <div class="two columns leader">leader</div>
-        <div class ="offset-by-three six columns welcome" id="welcomeIntro">
+        <div class="col s2 leader">leader</div>
+        <div class ="col s4 offset-s4 welcome" id="welcomeIntro">
           <% include ./partials/welcome.ejs %>
         </div>
       </div>
@@ -33,9 +39,5 @@
     <footer>
       <% include ./partials/footer.ejs %>
     </footer>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src='/javascripts/app.js'></script>
-        <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
   </body>
 </html>
