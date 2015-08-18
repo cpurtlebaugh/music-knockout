@@ -10,29 +10,35 @@
     <div class = 'form-container login z-depth-2'>
       <h3>Login</h3>
       <div class="row">
-        <form class="col s12">
+        <form class="col s12" action="/login" method="post">
           <div class="row">
             <div class="input-field col s12">
-              <input id="username" type="text" class="validate">
-              <label for="username">Username</label>
+              <input id="username" type="text" class="validate" name="username">
+              <label for="username">Username or Email</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="password" type="password" class="validate">
+              <input id="password" type="password" class="validate" name="password">
               <label for="password">Password</label>
             </div>
           </div>
-          <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+          <button class="btn waves-effect waves-light left" type="submit" name="action" value="Login">Login
           </button>
+          <br><br><br>
+          <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" onlogin="postlogin" data-default-audience="everyone">
+            </div>
           </div>
         </form>
+
       </div>
     </div>
 
     <footer>
     <% include ../partials/footer.ejs %>
     </footer>
+
+
 
   </body>
  </html>
