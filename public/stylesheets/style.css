@@ -18,43 +18,34 @@ title {
   height: 1000px;
   max-height: 635px;
   position: relative;
-  max-width: 1480px;
-  margin-right: 0;
-  margin-left: 0;
+  max-width: 1450px;
   background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
 }
 
 .game-row {
-  width: 100%;
-  margin-right: 0;
-  margin-left: 0;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .chat {
   position:absolute; 
   bottom:0;
-  width: 100%;
   border: 1px solid black;
   height: 100px;
+  width: 800px;
+  left: 20%;
   background-color: rgba(000, 000, 000, .5);
 }
 
-.players {
-  height: 500px;
-  border-radius: 5px;
-  background-color: rgba(000, 099, 099, .4);
-
-}
-
 .game {
-  border: 1px solid black;
   height: 100%;
 }
 
-.leader {
+.side {
+  margin:30px 0;
   border-radius: 5px;
-  height: 500px;
-  background-color: rgba(000, 099, 099, .4);
+  height: 420px;
+  background-color: rgba(222, 099, 099, .4);
 }
 
 /*welcome div*/
