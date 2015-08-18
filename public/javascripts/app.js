@@ -2,9 +2,7 @@ console.log('connected JS file');
 
 function initiate() {
 
-  var genre = "";
-  var songs = [];
-
+  // For now, we will have a prechosen list of artists to use.
   var artists = [
     "6S2OmqARrzebs0tKUEyXyp", "3TVXtAsR1Inumwj472S9r4", "6DIS6PRrLS3wbnZsf7vYic",
     "6eUKZXaKkcviH0Ku9w2n3V", "4NHQUGzhtTLFvgF5SZesLK", "04gDigrS5kc9YWfZHwBETP",
@@ -13,7 +11,7 @@ function initiate() {
     "5Rl15oVamLq7FbSb0NNBNy", "2iojnBLj0qIMiKPvVhLnsH", "6nS5roXSAGhTGr34W6n7Et"
   ]
 
-  var randomArtist = function(artists) {
+  function randomArtist(artists) {
     return artists[Math.floor(Math.random() * artists.length)];
   }
 
@@ -41,7 +39,7 @@ function initiate() {
   // -------------------------------------------------------------------------//
   //                              NESTED AJAX CALLS                           //
 
-  var chosenTopSong = getArtistTopTracks(chosenArtist)
+  var chosenTopSong = getArtistTopTracks(chosenArtist);
 
   chosenTopSong.then(function(data){
     chosenTopSong = data.tracks[0];
@@ -50,7 +48,6 @@ function initiate() {
     relatedArtists = sortRelatedArtists(data.artists);
     // Split artists array in half to show top 10
     var leftSide = relatedArtists.slice(0, Math.round(relatedArtists.length / 2));
-    // Gets a random artist from the sorted array.
 
     // Then, we need to grab 4 other random artists for the other M/C answers.
     var chosenRelatedArtists = [];
@@ -60,29 +57,63 @@ function initiate() {
 
     console.log(chosenRelatedArtists);
     var relatedSongs = [];
+    var allSongs = [];
     for (var i = 0; i < 4; i++) {
-      var test = getArtistTopTracks(chosenRelatedArtists[i].id).then(function(data){
+      var topTracks = getArtistTopTracks(chosenRelatedArtists[i].id).then(function(data){
         relatedSongs.push(data.tracks[0]);
         if (relatedSongs.length === 4) {
-          $('body').append('<audio style="display: none" src="' + chosenTopSong.preview_url + '"' + 'preload="auto" controls autoplay></audio>');
-          // AJAX calls, done. Data received. Need to append the quiz table.
+          chosenTopSong.correct = true;
+          allSongs = relatedSongs.concat(chosenTopSong);
+          console.log(allSongs);
+          allSongsShuffled = _.shuffle(allSongs);
+          var correct = allSongsShuffled.filter(function(song){
+            return song.correct === true;
+          })
+          console.log(correct);
+          console.log(allSongsShuffled);
+          $('body').append('<audio id="song-player" style="display: none" src="' + chosenTopSong.preview_url + '"' + 'preload="auto" controls autoplay></audio>');
 
-          var gameTable = '<form action="#"><p><input name="group1" type="radio" id="test1" /><label for="test1">' + chosenTopSong.name + ' - ' + chosenTopSong.artists[0].name +'</label></p><p><input name="group1" type="radio" id="test2" /><label for="test2">Yellow</label></p><p><input class="with-gap" name="group1" type="radio" id="test3"  /><label for="test3">Green</label></p><p><input name="group1" type="radio" id="test4" /><label for="test4">Brown</label></p><p><input name="group1" type="radio" id="test4" /><label for="test4">Brown</label></p></form>';
+          // AJAX calls, done. Data received. Need to append the quiz table.
+          var gameTable = '<form action="#" id="game-table"><p><input name="group1" type="radio" id="ans1" /><label for="ans1">' + allSongsShuffled[0].name + ' - ' + allSongsShuffled[0].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans2" /><label for="ans2">'  + allSongsShuffled[1].name + ' - ' + allSongsShuffled[1].artists[0].name + '</label></p><p><input class="group1" name="group1" type="radio" id="ans3"  /><label for="ans3">'  + allSongsShuffled[2].name + ' - ' + allSongsShuffled[2].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans4" /><label for="ans4">'  + allSongsShuffled[3].name + ' - ' + allSongsShuffled[3].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans5" /><label for="ans5">'  + allSongsShuffled[4].name + ' - ' + allSongsShuffled[4].artists[0].name + '</label></p><p><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></p></form>';
+
+          // Game Logic:
+          var ans1 = $('#ans1'),
+              ans2 = $('#ans2'),
+              ans3 = $('#ans3'),
+              ans4 = $('#ans4'),
+              ans5 = $('#ans5');
+
+          var answers = [ans1, ans2, ans3, ans4, ans5];
+          console.log(answers[0]);
+          answers.forEach(function(x){console.log(x.checked)});
+          function findSelected(answers) {
+            return answers.filter(function(answer){
+              // return answer.
+            })
+          }
+
           $('body').append(gameTable);
+
+          // Win logic:
+          $('#game-table').on('submit', function(el){
+            var selectedAnswer = $('input:checked').next().html().split(' - ');
+            console.log(selectedAnswer);
+            // If chosen answer matches the chosen song, remove elements and re-initiate.
+            if (selectedAnswer[0] === chosenTopSong.name) {
+              console.log("winner");
+              $('#game-table').remove();
+              $('#song-player').remove();
+              // Recursive function call.
+              initiate();
+            }
+          });
+
         }
       });
     }
 
     console.log(relatedSongs);
 
-
-
-    // chosenRelatedArtists.forEach(function(x){
-
-    // })
-
-    // var chosenRelatedArtistsTopTracks = getChosenArtistTracks(chosenRelatedArtists.name);
-    // console.log(chosenRelatedArtistsTopTracks);
   });
   });
 
@@ -95,10 +126,6 @@ function initiate() {
 
 
   // -------------------------------------------------------------------------//
-
-
-
-  // chosenArtistTopTracks = getChosenArtist.responseJSON.tracks;
 
   function getRelatedArtistsTopSongs(relatedArtists) {
     var output = relatedArtists.forEach(function(artist) {
@@ -116,32 +143,20 @@ function initiate() {
 
   console.log(relatedSongs);
 
-  // var test = $.get("https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/related-artists").then(function(x){
-  //   x.artists.map(function(y){
-  //     $.get("https://api.spotify.com/v1/artists/" + y.id + "/top-tracks?country=US").then(function(z){
-  //       z.tracks.map(function(a){
-  //         console.log(a);
-  //         songs.push(a.id);
-  //       });
-  //     }).then(function(){
-  //         if (songs.length === 200) {
-  //           $('body').append('<audio style="display: none" src="' + songs[songs.length - 1].preview_url + '"' + 'preload="auto" controls autoplay></audio>');
-  //         }
-  //     });
-  //   });
-  // });
-
   console.log(songs);
   // console.log(songs);
-
-  $("#welcomeIntro").on('click', function() {
-    $(this).fadeOut(0);
-  });
-
-  //paralax effect
-  $(document).ready(function() {
-    $('.parallax').parallax();
-  });
 }
 
-initiate();
+$("#welcomeIntro").on('click', function() {
+  $(this).fadeOut(0);
+});
+
+
+//paralax effect
+$(document).ready(function() {
+  $('.parallax').parallax();
+});
+
+$(document).ready(function(){
+  // initiate();
+})
