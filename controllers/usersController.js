@@ -12,6 +12,10 @@ function newUser(req, res, next) {
   res.send("hello");
 }
 
+function mainGame(req, res) {
+  res.render('game/game');
+}
+
 function createUser(req, res, next) {
   var user = new User(reqbody.user);
   User.save(function(err){
@@ -70,6 +74,7 @@ module.exports = {
   createUser: createUser,
   showUser:   showUser,
   editUser:   editUser,
+  mainGame:   mainGame,
   updateUser: updateUser,
   deleteUser: deleteUser
 }

@@ -13,20 +13,36 @@ title {
   text-align: center;
 }
 
+
 .container {
   width: 100%;
   height: 1000px;
   max-height: 635px;
   position: relative;
   max-width: 1450px;
-  background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
 }
+
+#container-game {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  top: 150px;
+}
+
 
 .game-row {
   margin-right: 0px;
   margin-left: 0px;
 }
 
+<<<<<<< HEAD
+=======
+#leader-board, #game-board, #chat-board {
+position: relative;
+max-height: 1000px;
+overflow: auto;
+}
+
+>>>>>>> 15a4a678fe1a94cfce51f8535c41e37c7932e9e0
 .chat {
   position:absolute;
   bottom:0;
