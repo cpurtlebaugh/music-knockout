@@ -26,46 +26,46 @@ function initiate() {
   }
 
   var relatedArtists = getRelatedArtists(chosenArtist);
-  relatedArtists = relatedArtists.responseJSON.artists;
-  console.log(relatedArtists);
+
+  relatedArtists.then(sortRelatedArtists);
 
   // After related artists have been retrieved and parsed, this sorts them by popularity.
   function sortRelatedArtists(artists){
-    return artists.sort(function(a,b){
+    console.log(artists.artists);
+    return artists.artists.sort(function(a,b){
       return b.popularity - a.popularity;
     });
   }
 
-
-  // Call sortRelatedArtists function and re-referenced relatedArtists to sorted
-  // array.
   relatedArtists = sortRelatedArtists(relatedArtists);
+
+  console.log(relatedArtists);
 
   // Grab the top 2 songs from the top 5 most popular related artists and put them
   // in an array.
 
-  getChosenArtist = $.get("https://api.spotify.com/v1/artists/" + chosenArtist + "/top-tracks?country=US");
+  // getChosenArtist = $.get("https://api.spotify.com/v1/artists/" + chosenArtist + "/top-tracks?country=US");
 
 
-  getChoseArtistTopSong = function(getChosenArtist){
+  // getChoseArtistTopSong = function(getChosenArtist){
 
-  };
+  // };
 
-  function getRelatedArtistsTopSongs(relatedArtists) {
-    var output = relatedArtists.forEach(function(artist){
-      return $.get("https://api.spotify.com/v1/artists/" + y.id + "/top-tracks?country=US");
-    })
-    return output;
-  }
+  // function getRelatedArtistsTopSongs(relatedArtists) {
+  //   var output = relatedArtists.forEach(function(artist){
+  //     return $.get("https://api.spotify.com/v1/artists/" + y.id + "/top-tracks?country=US");
+  //   })
+  //   return output;
+  // }
 
-  var songSelections = getRelatedArtistsTopSongs;
+  // var songSelections = getRelatedArtistsTopSongs;
 
-  function getRandomSongs(songSelections) {
-  // select 4 songs from the random song list.
-  }
+  // function getRandomSongs(songSelections) {
+  // // select 4 songs from the random song list.
+  // }
 
 
-  console.log(relatedSongs);
+  // console.log(relatedSongs);
 
   // var test = $.get("https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/related-artists").then(function(x){
   //   x.artists.map(function(y){
