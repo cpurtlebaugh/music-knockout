@@ -2,6 +2,9 @@ console.log('connected JS file');
 
 function initiate() {
 
+  // -------------------------------------------------------------------------//
+  //                             FUNCTION DEFINITIONS                         //
+
   // For now, we will have a prechosen list of artists to use.
   var artists = [
     "6S2OmqARrzebs0tKUEyXyp", "3TVXtAsR1Inumwj472S9r4", "6DIS6PRrLS3wbnZsf7vYic",
@@ -11,14 +14,17 @@ function initiate() {
     "5Rl15oVamLq7FbSb0NNBNy", "2iojnBLj0qIMiKPvVhLnsH", "6nS5roXSAGhTGr34W6n7Et"
   ]
 
+  // Grabs a random artist from the array of pre-selected artists.
   function randomArtist(artists) {
     return artists[Math.floor(Math.random() * artists.length)];
   }
 
+  // This points chosenArtist as at a random artist from artists array.
   var chosenArtist = randomArtist(artists);
   console.log(chosenArtist);
 
-  // Given an artist, this returns a list of related artists.
+  // Given an artist, this returns a list of related artists to use as other
+  // multiplice choice answer for each quiz question.
   function getRelatedArtists(artist) {
     return $.get("https://api.spotify.com/v1/artists/" + artist + "/related-artists");
   }
@@ -35,17 +41,22 @@ function initiate() {
   function getArtistTopTracks(artistId) {
     return $.get("https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US");
   }
+  // -------------------------------------------------------------------------//
+
+
 
   // -------------------------------------------------------------------------//
   //                              NESTED AJAX CALLS                           //
 
   var chosenTopSong = getArtistTopTracks(chosenArtist);
 
+  // First AJAX call, followed by a promise with other nested calls.
   chosenTopSong.then(function(data){
     chosenTopSong = data.tracks[0];
     console.log(chosenTopSong);
     relatedArtists.then(function(data) {
     relatedArtists = sortRelatedArtists(data.artists);
+
     // Split artists array in half to show top 10
     var leftSide = relatedArtists.slice(0, Math.round(relatedArtists.length / 2));
 
@@ -61,6 +72,7 @@ function initiate() {
     for (var i = 0; i < 4; i++) {
       var topTracks = getArtistTopTracks(chosenRelatedArtists[i].id).then(function(data){
         relatedSongs.push(data.tracks[0]);
+        // After 4 songs have been pushed, get ready to append the quiz form.
         if (relatedSongs.length === 4) {
           chosenTopSong.correct = true;
           allSongs = relatedSongs.concat(chosenTopSong);
@@ -71,6 +83,7 @@ function initiate() {
           })
           console.log(correct);
           console.log(allSongsShuffled);
+          // Hidden embedded auto song player.
           $('body').append('<audio id="song-player" style="display: none" src="' + chosenTopSong.preview_url + '"' + 'preload="auto" controls autoplay></audio>');
 
           // AJAX calls, done. Data received. Need to append the quiz table.
@@ -86,11 +99,6 @@ function initiate() {
           var answers = [ans1, ans2, ans3, ans4, ans5];
           console.log(answers[0]);
           answers.forEach(function(x){console.log(x.checked)});
-          function findSelected(answers) {
-            return answers.filter(function(answer){
-              // return answer.
-            })
-          }
 
           $('body').append(gameTable);
 
@@ -121,31 +129,9 @@ function initiate() {
 
   // Calls the getRelatedArtists function which performs an AJAX requeset.
   var relatedArtists = getRelatedArtists(chosenArtist);
-
-  // After the promise is finished, the returned array within the returned object is sorted.
-
+}
 
   // -------------------------------------------------------------------------//
-
-  function getRelatedArtistsTopSongs(relatedArtists) {
-    var output = relatedArtists.forEach(function(artist) {
-      return $.get("https://api.spotify.com/v1/artists/" + y.id + "/top-tracks?country=US");
-    });
-    return output;
-  }
-
-  var songSelections = getRelatedArtistsTopSongs;
-
-  function getRandomSongs(songSelections) {
-    // select 4 songs from the random song list.
-  }
-
-
-  console.log(relatedSongs);
-
-  console.log(songs);
-  // console.log(songs);
-}
 
 $("#welcomeIntro").on('click', function() {
   $(this).fadeOut(0);
@@ -156,7 +142,3 @@ $("#welcomeIntro").on('click', function() {
 $(document).ready(function() {
   $('.parallax').parallax();
 });
-
-$(document).ready(function(){
-  // initiate();
-})
