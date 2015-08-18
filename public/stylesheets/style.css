@@ -27,8 +27,6 @@ title {
   margin-left: 0px;
 }
 
-
-
 .chat {
   position:absolute;
   bottom:0;
@@ -81,11 +79,7 @@ title {
     }
 
 nav {
-<<<<<<< HEAD
-  background: rgba(0,0,0, .00);
-=======
   background: rgba(0,0,0, 0);
->>>>>>> api-feature
   position: fixed;
   z-index: 5;
 }
