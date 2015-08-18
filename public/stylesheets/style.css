@@ -2,7 +2,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   position: relative;
   background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
-  
 }
 
 a {
@@ -28,7 +27,7 @@ title {
 }
 
 .chat {
-  position:absolute; 
+  position:absolute;
   bottom:0;
   border: 1px solid black;
   height: 100px;
@@ -58,7 +57,7 @@ title {
   text-align: justify;
   background: rgba(011, 011, 909, 1.0);
   cursor: pointer;
-  background: 
+  background:
   linear-gradient(to top, rgba(160,196,229,.2),
   rgba(061,112,229,1));
 }
@@ -66,7 +65,7 @@ title {
 .welcome h1 {
   text-align: center;
   margin-top: 40px;
-  padding: 0 40px; 
+  padding: 0 40px;
 }
 
 .welcome p {
@@ -81,9 +80,10 @@ title {
 nav {
   background: rgba(0,0,0, .30);
   position: fixed;
-}    
+}
 
 /*forms*/
+
 .form-container {
   background-color: white;
   margin: 60px auto;
@@ -108,4 +108,4 @@ nav {
   font-weight: bold;
   color: #777;
 }
-        
+]
