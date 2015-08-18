@@ -2,22 +2,32 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   position: relative;
   background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
+  
 }
 
 a {
   color: #00B7FF;
 }
 
-.container {
-  width: 100%;
-  height: 740px;
-  max-height: 1000px;
-  position: relative;
-  margin-right: 0px;
+title {
+  text-align: center;
 }
 
-.row {
+.container {
   width: 100%;
+  height: 1000px;
+  max-height: 635px;
+  position: relative;
+  max-width: 1480px;
+  margin-right: 0;
+  margin-left: 0;
+  background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
+}
+
+.game-row {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .chat {
@@ -73,7 +83,38 @@ a {
 }
 
 /*paralax effect*/
- .parallax-container {
-      height: 500px;
+.parallax-container {
+      height: 690px;
     }
+
+nav {
+  background: rgba(0,0,0, .30);
+  position: fixed;
+}    
+
+/*forms*/
+.form-container {
+  background-color: white;
+  margin: 60px auto;
+  border-radius: 10px;
+}
+
+.signup {
+  height:550px;
+  width:450px;
+  padding: 10px;
+}
+
+.login {
+  height:390px;
+  width:450px;
+  padding: 10px;
+}
+
+.form-container h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #777;
+}
         
