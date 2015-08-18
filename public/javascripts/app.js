@@ -87,7 +87,7 @@ function initiate() {
           $('body').append('<audio id="song-player" style="display: none" src="' + chosenTopSong.preview_url + '"' + 'preload="auto" controls autoplay></audio>');
 
           // AJAX calls, done. Data received. Need to append the quiz table.
-          var gameTable = '<form action="#" id="game-table"><p><input name="group1" type="radio" id="ans1" /><label for="ans1">' + allSongsShuffled[0].name + ' - ' + allSongsShuffled[0].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans2" /><label for="ans2">'  + allSongsShuffled[1].name + ' - ' + allSongsShuffled[1].artists[0].name + '</label></p><p><input class="group1" name="group1" type="radio" id="ans3"  /><label for="ans3">'  + allSongsShuffled[2].name + ' - ' + allSongsShuffled[2].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans4" /><label for="ans4">'  + allSongsShuffled[3].name + ' - ' + allSongsShuffled[3].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans5" /><label for="ans5">'  + allSongsShuffled[4].name + ' - ' + allSongsShuffled[4].artists[0].name + '</label></p><p><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></p></form>';
+          var gameTable = '<form action="#" id="game-table" class="animated bounceInDown"><p><input name="group1" type="radio" id="ans1" /><label for="ans1">' + allSongsShuffled[0].name + ' - ' + allSongsShuffled[0].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans2" /><label for="ans2">'  + allSongsShuffled[1].name + ' - ' + allSongsShuffled[1].artists[0].name + '</label></p><p><input class="group1" name="group1" type="radio" id="ans3"  /><label for="ans3">'  + allSongsShuffled[2].name + ' - ' + allSongsShuffled[2].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans4" /><label for="ans4">'  + allSongsShuffled[3].name + ' - ' + allSongsShuffled[3].artists[0].name + '</label></p><p><input name="group1" type="radio" id="ans5" /><label for="ans5">'  + allSongsShuffled[4].name + ' - ' + allSongsShuffled[4].artists[0].name + '</label></p><p><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></p></form>';
 
           // Game Logic:
           var ans1 = $('#ans1'),
@@ -100,12 +100,13 @@ function initiate() {
           console.log(answers[0]);
           answers.forEach(function(x){console.log(x.checked)});
 
-          $('body').append(gameTable);
+          $('#game-board').append(gameTable);
 
           // Win logic:
           $('#game-table').on('submit', function(el){
             var selectedAnswer = $('input:checked').next().html().split(' - ');
             console.log(selectedAnswer);
+            console.log(chosenTopSong);
             // If chosen answer matches the chosen song, remove elements and re-initiate.
             if (selectedAnswer[0] === chosenTopSong.name) {
               console.log("winner");
