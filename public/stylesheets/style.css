@@ -79,8 +79,9 @@ title {
     }
 
 nav {
-  background: rgba(0,0,0, .30);
+  background: rgba(0,0,0, 0);
   position: fixed;
+  z-index: 5;
 }
 
 /*forms*/
