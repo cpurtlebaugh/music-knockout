@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 //login
 router.get('/login', function(req, res) {
-  res.render('login', {user : req.user});
+  res.render('users/login', {user : req.user});
 });
 
 
@@ -31,7 +31,7 @@ router.post('/login', passport.authenticate(
 
 // register
 router.get('/register', function (req, res) {
-  res.render('register');
+  res.render('users/register');
 });
 
 // Handle the Submission of the Register Form
