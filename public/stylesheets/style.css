@@ -13,15 +13,40 @@ a {
   height: 740px;
   max-height: 1000px;
   position: relative;
-  margin-right: 0px;
+  margin-right: 0px;body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
+  background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
+
 }
 
-.row {
+a {
+  color: #00B7FF;
+}
+
+title {
+  text-align: center;
+}
+
+.container {
   width: 100%;
+  height: 1000px;
+  max-height: 635px;
+  position: relative;
+  max-width: 1480px;
+  margin-right: 0;
+  margin-left: 0;
+  background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
+}
+
+.game-row {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .chat {
-  position:absolute; 
+  position:absolute;
   bottom:0;
   width: 100%;
   border: 1px solid black;
@@ -57,7 +82,7 @@ a {
   text-align: justify;
   background: rgba(011, 011, 909, 1.0);
   cursor: pointer;
-  background: 
+  background:
   linear-gradient(to top, rgba(160,196,229,.2),
   rgba(061,112,229,1));
 }
@@ -65,7 +90,101 @@ a {
 .welcome h1 {
   text-align: center;
   margin-top: 40px;
-  padding: 0 40px; 
+  padding: 0 40px;
+}
+
+.welcome p {
+  padding: 0 30px;
+}
+
+/*paralax effect*/
+.parallax-container {
+      height: 690px;
+    }
+
+nav {
+  background: rgba(0,0,0, .30);
+  position: fixed;
+}
+
+/*forms*/
+.form-container {
+  background-color: white;
+  margin: 60px auto;
+  border-radius: 10px;
+}
+
+.signup {
+  height:550px;
+  width:450px;
+  padding: 10px;
+}
+
+.login {
+  height:390px;
+  width:450px;
+  padding: 10px;
+}
+
+.form-container h3 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #777;
+}
+
+}
+
+.row {
+  width: 100%;
+}
+
+.chat {
+  position:absolute;
+  bottom:0;
+  width: 100%;
+  border: 1px solid black;
+  height: 100px;
+  background-color: rgba(000, 000, 000, .5);
+}
+
+.players {
+  height: 500px;
+  border-radius: 5px;
+  background-color: rgba(000, 099, 099, .4);
+
+}
+
+.game {
+  border: 1px solid black;
+  height: 100%;
+}
+
+.leader {
+  border-radius: 5px;
+  height: 500px;
+  background-color: rgba(000, 099, 099, .4);
+}
+
+/*welcome div*/
+.welcome {
+  height:400px;
+  width: 100%;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 10 ;
+  text-align: justify;
+  background: rgba(011, 011, 909, 1.0);
+  cursor: pointer;
+  background:
+  linear-gradient(to top, rgba(160,196,229,.2),
+  rgba(061,112,229,1));
+}
+
+.welcome h1 {
+  text-align: center;
+  margin-top: 40px;
+  padding: 0 40px;
 }
 
 .welcome p {
@@ -76,4 +195,4 @@ a {
  .parallax-container {
       height: 500px;
     }
-        
+
