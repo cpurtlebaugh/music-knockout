@@ -106,6 +106,7 @@ function initiate() {
           $('#game-table').on('submit', function(el){
             var selectedAnswer = $('input:checked').next().html().split(' - ');
             console.log(selectedAnswer);
+            console.log(chosenTopSong);
             // If chosen answer matches the chosen song, remove elements and re-initiate.
             if (selectedAnswer[0] === chosenTopSong.name) {
               console.log("winner");
