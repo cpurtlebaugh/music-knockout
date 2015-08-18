@@ -100,7 +100,7 @@ function initiate() {
           console.log(answers[0]);
           answers.forEach(function(x){console.log(x.checked)});
 
-          $('body').append(gameTable);
+          $('#game-board').append(gameTable);
 
           // Win logic:
           $('#game-table').on('submit', function(el){
