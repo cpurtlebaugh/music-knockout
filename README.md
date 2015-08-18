@@ -7,8 +7,6 @@
 - HTML:
  - Used to create the structure of the game and layout of the website.
 - CSS Frameworks:
-  - Normalize CSS: Used to reset the default browser stylings to increase continuity in design.
-  - Skeleton CSS: Used to create a responsive grid system and also for basic forms and buttons.
   - Materialize CSS: Used for the parallax feature and possibly other design elements.
   - Animate CSS: Used for the more advanced animations such as drop in, drop out, shake, etc. which will be used to make the game more lively, interactive, and engaging.
 - Javascript: is used for page interactivity, calculation of game points, etc.
@@ -30,9 +28,8 @@
 ###Design Approach:
 
 ###Get Started:
-To install this game and play it, simply download the files and open up the HTML page in the browser. "Set Up Game" button the bottom of the game board will initialize the game, and the game can be cleared and reset at any time by using the "Clear The Board" button.
+To install this game and play it, simply download the files, npm install, run mongod, nodemon to launch the server and open up localhost:3000 in the browser. Or you can play by going to the following address:    Once you're signed up and logged in press play.
 
-If you'd like to download and alter the source code, all of the HTML is contained in `index.html`, all of the CSS is contained in `style.css`, and all of the Javascript and jQuery is contained in the `main.js` file.
 
 ###Unsolved Problems/Planned Features:
 -
@@ -43,17 +40,20 @@ If you'd like to download and alter the source code, all of the HTML is containe
 
 
 **MVP**:
-- [x] As a user, I want to be able to move my pieces on the board so I can try and win the game.
-- [x] As a user, I want to be notified as to whether or not my desired move is legal or not so I can make a different move if needed.
-- [x] As a user, I want to be able to "capture" or "attack" other players so I can (eventually) win the game.
-- [x] As a user, I want to be able to play against another human so that the game is at least playable.
-- [x] As a user, I want to have a tracker that summarizes the state of the game, so I can gauge how I'm doing in my current game (by showing, for example, current selected piece and current score).
-- [x] As a user, I want a 'reset game' button so that I can reset the game instead of frusturatingly play through a game I know is a lost cause.
-- [x] As a user, I want an aesthetically pleasing and functional UI so that I can clearly see the status of the game.
-- [ ] As a user, I want to be indicated of what piece I currently have selected.
+- [ ] As a user, I want to be able to see the other players connected to the game so I know who I am competing against.
+- [ ] As a user, I want to go to a splash/index page that makes it clear of what I need to do next so that I know how to play.
+- [ ] As a user, I want to be able to see other connected users' scores so I know where I stand compared to other users.
+- [ ] As a user, I want to know what my current status/score.
+- [ ] As a user, I would like to be able to easily share this on social media so I can encourage my friends to play.
+- [ ] As a user, I would like to be able to play without being a registered user so that I can quickly get playing against others.
+- [ ] As a user, I'd like to be able to give input as the genre of the songs being quizzed so I can compete with songs that I like.
+- [ ] As a user, I want an interactive UI that has clear and fun animations.
+- [ ] As a user, I want to be able to select the song from a list of multiple choices.
+- [ ] As a user, I want to be able to see others high scores in the current game in real time.
+- [ ] As a user,  I would like to be able to sign in and view my profile page so I can manipulate my profile and settings.
+
+
 
 **Icebox:**
-- [ ] As a user, I want to be able to use chain attacks so that I can utilize traditional checkers strategies during the game.
-- [ ] As a user, I want to be able to select pieces and be shown a visual list of options as to where I can move the selected pieces so I can easily make decisions about my next move.
-- [ ] As a user, I want to be granted a king if I get to the opponents side of the board so that I can utilize the power of king pieces during my game.
-- [x] As a user, I want assistance that notifies me of where I'm allowed to move a selected piece.
+- [ ] As a user, I would like be able to participate in live chat so I can communicate (and possibly taunt) other players connected to the game.
+- [ ] As a user, I would like to be able to provide input for the next round of songs (perhaps song genre, music type, etc.) so that the playing field is leveled out and I have a chance to reveal my music knowledge.
