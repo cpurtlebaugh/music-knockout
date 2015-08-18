@@ -111,5 +111,6 @@ router.get('/users/new', usersController.showUser);
 router.get('/users/new', usersController.editUser);
 router.put('/users/', usersController.updateUser);
 router.delete('/users/:id', usersController.deleteUser);
+router.get('/game', usersController.mainGame);
 
 module.exports = router;
