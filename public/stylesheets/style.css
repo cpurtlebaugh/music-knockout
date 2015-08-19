@@ -9,9 +9,14 @@ title {
 
 /*first container on index page*/
 
+#hello {
+  background-color: #333;
+}
+
 .hello {
+  color: #fff;
   height: 400px;
-  background-color: #ffffff;
+  background-color: #333;
 }
 
 /*second container on index page*/
@@ -43,14 +48,18 @@ title {
   cursor: pointer;
 }
 
+#cool-content {
+  background-color: #333;
+}
+
 /*third container on index page*/
 .cool-content {
   height: 500px;
-  background-color: #ffffff;
+  color: #fff;
+  background-color: #333;
   width: 100%;
-  margin: 100px 0;
+  padding-top: 100px;
   text-align: center;
-
 }
 
 .cool-content p{
