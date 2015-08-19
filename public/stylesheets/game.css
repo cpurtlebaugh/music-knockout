@@ -40,6 +40,10 @@ title {
   text-align: center;
 }
 
+#chat-board {
+  padding-bottom: 25px;
+}
+
 .game-row {
   margin-right: 0px;
   margin-left: 0px;
@@ -102,29 +106,5 @@ nav {
   z-index: 5;
 }
 
-/*forms*/
-.form-container {
-  background-color: white;
-  margin: 60px auto;
-  border-radius: 10px;
-}
 
-.signup {
-  height:550px;
-  width:450px;
-  padding: 10px;
-}
-
-.login {
-  height:390px;
-  width:450px;
-  padding: 10px;
-}
-
-.form-container h3 {
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #777;
-}
 

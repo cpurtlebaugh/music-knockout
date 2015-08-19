@@ -26,6 +26,7 @@
 
     <style>
       body {
+        font-family: 'Raleway';
         background-color: #333;
       }
     </style>
@@ -62,9 +63,16 @@
 
         <!-- Chat Board -->
         <div class="col s12 m3 l3 offset-l1 offset-m1" id="chat-board">
-          <h5>Chat</h5>
+          <ul class="collection with-header">
+
+              <li class="collection-header"><h5>Chat</h5></li>
+              <li class="collection-item"></li>
+              <li class="collection-item"></li>
+              <li class="collection-item"></li>
+              <li class="collection-item"></li>
+            </ul>
           <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Textarea</label>
+          <label for="textarea1">Enter your Message</label>
         </div>
 
       </div>
@@ -75,7 +83,7 @@
     <% include ../partials/footer.ejs %>
     </footer>
 
-
+    <% include ../partials/scripts.ejs %>
 
   </body>
  </html>
