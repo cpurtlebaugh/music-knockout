@@ -17,8 +17,8 @@ $(document).ready(function() {
   // });
 
   // on socket connection established..
-  clientIo.on('user-connected', function(socket) {
-    console.log("Hello World");
+  clientIo.on('user-connected', function(data) {
+    console.log("Congrats, we've connected to the GAME-GATE!!!!", data);
   });
 });
 
