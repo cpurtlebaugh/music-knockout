@@ -1,94 +1,58 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px Helvetica, Arial, sans-serif;
   position: relative;
-  /*background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");*/
-}
-
-a {
-  color: #00B7FF;
 }
 
 title {
   text-align: center;
 }
 
-.container {
-  /*width: 100%;*/
-  max-height: 635px;
-  position: relative;
-  max-width: 1450px;
+
+/*first container on index page*/
+
+.hello {
+  height: 400px;
+  background-color: #ffffff;
 }
 
-#game-container {
-  width: 80%;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  top: 150px;
-}
 
-#inner-game-container {
-  height: 100%;
-  padding: 20px 0;
-  width: 90%;
-}
+/*second container on index page*/
 
-#game-table {
-  padding-bottom: 25px;
-}
-
-#game-table:nth-child(6) {
-  text-align: center;
-}
-
-.game-row {
-  margin-right: 0px;
-  margin-left: 0px;
-}
-
-.chat {
-  position:absolute;
-  bottom:0;
-  border: 1px solid black;
-  height: 100px;
-  width: 800px;
-  left: 20%;
-  background-color: rgba(000, 000, 000, .5);
-}
-
-.game {
-  height: 100%;
-}
-
-.side {
-  margin:30px 0;
-  border-radius: 5px;
-  height: 420px;
-  background-color: rgba(222, 099, 099, .4);
-}
-
-/*welcome div*/
 .welcome {
-  height:400px;
-  width: 100%;
-  border-radius: 10px;
-  position: absolute;
-  z-index: 10 ;
-  text-align: justify;
-  background: rgba(011, 011, 909, 1.0);
-  cursor: pointer;
-  background:
-  linear-gradient(to top, rgba(160,196,229,.2),
-  rgba(061,112,229,1));
-}
-
-.welcome h1 {
+  height: 500px;
   text-align: center;
-  margin-top: 40px;
-  padding: 0 40px;
+  margin-top: 100px;
 }
 
-.welcome p {
-  padding: 0 30px;
+.welcome-forms {
+  background-color: #ffffff;
+  padding:0 20px;
+  border-radius: 30px;
+}
+
+.playnow {
+  height: 100px;
+  width: 200px;
+  background-color: pink;
+  margin: 60px auto;
+  border-radius: 10px;
+  text-align: center;
+  padding: 40px;
+  cursor: pointer;
+}
+
+/*third container on index page*/
+.cool-content {
+  height: 500px;
+  background-color: #ffffff;
+  width: 100%;
+  margin: 100px 0;
+  text-align: center;
+
+}
+
+.cool-content p{
+  text-align: justify;
 }
 
 /*paralax effect*/
@@ -96,16 +60,27 @@ title {
       height: 690px;
     }
 
+/*nav bar*/
+
 nav {
-  background: rgba(0,0,0, 0);
+  background: rgba(000,000,000, .9);
   position: fixed;
-  z-index: 5;
+  top: 0;
+  z-index: 3;
 }
 
 /*forms*/
+
 .form-container {
   background-color: white;
   margin: 60px auto;
+  border-radius: 10px;
+  margin-top: 150px;
+}
+
+.form-container-partial {
+  background-color: #ffffff;
+  margin:0 auto;
   border-radius: 10px;
 }
 
@@ -115,10 +90,26 @@ nav {
   padding: 10px;
 }
 
+.register-partial {
+  height:460px;
+  width:330px;
+  padding: 2px;
+}
+
 .login {
-  height:390px;
+  height:370px;
   width:450px;
   padding: 10px;
+}
+
+.login-partial {
+  height:350px;
+  width:330px;
+  padding: 15px;
+}
+
+.row {
+  margin-bottom: 0;
 }
 
 .form-container h3 {
@@ -128,4 +119,18 @@ nav {
   color: #777;
 }
 
+/*footer*/
+footer {
+  height:150px;
+  width: 100%;
+  background-color:#777;
+  color: white;
+  position: absolute;
+  z-index: 2;
+}
+
+footer h5 {
+  margin-top: 90px;
+  font-style: italic;
+}
 
