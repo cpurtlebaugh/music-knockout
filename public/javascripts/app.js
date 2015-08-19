@@ -19,10 +19,6 @@ function initiate() {
     return artists[Math.floor(Math.random() * artists.length)];
   }
 
-  // This points chosenArtist as at a random artist from artists array.
-  var chosenArtist = randomArtist(artists);
-  console.log(chosenArtist);
-
   // Given an artist, this returns a list of related artists to use as other
   // multiplice choice answer for each quiz question.
   function getRelatedArtists(artist) {
@@ -48,6 +44,10 @@ function initiate() {
   // -------------------------------------------------------------------------//
   //                              NESTED AJAX CALLS                           //
 
+  // This points chosenArtist as at a random artist from artists array.
+  var chosenArtist = randomArtist(artists);
+  console.log(chosenArtist);
+
   var chosenTopSong = getArtistTopTracks(chosenArtist);
 
   // First AJAX call, followed by a promise with other nested calls.
@@ -59,7 +59,6 @@ function initiate() {
 
     // Split artists array in half to show top 10
     var leftSide = relatedArtists.slice(0, Math.round(relatedArtists.length / 2));
-
     // Then, we need to grab 4 other random artists for the other M/C answers.
     var chosenRelatedArtists = [];
     for(var i = 0; i < 4; i++) {
