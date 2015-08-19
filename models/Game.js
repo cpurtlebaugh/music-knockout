@@ -25,6 +25,12 @@ var GameSchema = new mongoose.Schema({
   }
 });
 
+GameSchema.statics.getState = function(callback) {
+  this.find({}, function(err, games) {
+    callback(err, games[0]);
+  });
+};
+
 // Figure out how to attach these to the schema, then, export them.
 
 function startRound() {
