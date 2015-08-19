@@ -98,27 +98,3 @@ console.log(game);
 
   });
 });
-
-function startRound() {
-
-}
-
-function playSong() {
-
-}
-
-function multiChoice() {
-
-}
-
-function pickAChoice() {
-
-}
-
-function scoring() {
-
-}
-
-function endRound() {
-
-}
