@@ -3,6 +3,7 @@ var passport = require('passport');
 var router = express.Router();
 var User = require('../models/User');
 var usersController = require('../controllers/usersController');
+var trophiesController = require('../controllers/trophiesController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -101,7 +102,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
 
 
 // Trophies
-router.get('/trophies', usersController.getAll);
+router.get('/users/:id/trophies', trophiesController.getTrophies);
 
 // Users
 router.get('/users', usersController.getAll);
