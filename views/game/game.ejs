@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <head>
+    <!-- Raleway Font -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css' />
+    <!-- Normalize -->
+    <link rel="stylesheet" href="/stylesheets/normalize.css" />
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <!-- Custom Styles -->
+    <link rel='stylesheet' href='/stylesheets/game.css' />
+    <link rel="stylesheet" href="/stylesheets/animate.css" />
+
+    <script src="https://code.jquery.com/jquery-1.11.3.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js">
+    </script>
+    <script src='/javascripts/app.js'>
+    </script>
+    <script src='/javascripts/underscore.js'>
+    </script>
+</head>
+
+
+    <style>
+      body {
+        font-family: 'Raleway';
+        background-color: #333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <% include ../partials/nav.ejs %>
+    </nav>
+
+    <div class="container z-depth-3" id="game-container">
+      <div class="row center-align">
+
+        <div class="container" id="inner-game-container">
+        <div class="col s12 m3 l3" id="leader-board">
+
+
+            <ul class="collection with-header">
+
+              <li class="collection-header"><h5>Leaderboard</h5></li>
+              <li class="collection-item">Taylor</li>
+              <li class="collection-item">Tara</li>
+              <li class="collection-item">Adam</li>
+              <li class="collection-item">Cassie</li>
+            </ul>
+
+        </div>
+
+        <!-- Game Board -->
+        <div class="col s12 m4 l4 offset-l1 offset-m1" id="game-board">
+          <h5>Game</h5>
+        </div>
+        <!-- ////////// -->
+
+        <!-- Chat Board -->
+        <div class="col s12 m3 l3 offset-l1 offset-m1" id="chat-board">
+          <ul class="collection with-header">
+
+              <li class="collection-header"><h5>Chat</h5></li>
+              <li class="collection-item"></li>
+              <li class="collection-item"></li>
+              <li class="collection-item"></li>
+              <li class="collection-item"></li>
+            </ul>
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Enter your Message</label>
+        </div>
+
+      </div>
+
+      </div>
+    </div>
+    <footer>
+
+    </footer>
+
+    <% include ../partials/scripts.ejs %>
+
+  </body>
+ </html>
