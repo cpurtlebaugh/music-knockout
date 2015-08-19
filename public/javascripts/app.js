@@ -1,4 +1,5 @@
 console.log('connected JS file');
+var socket = io();
 
 function initiate() {
 
@@ -133,6 +134,8 @@ function initiate() {
 }
 
   // -------------------------------------------------------------------------//
+
+
 
 $("#welcomeIntro").on('click', function() {
   $(this).fadeOut(0);
