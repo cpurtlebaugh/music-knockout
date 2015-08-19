@@ -25,16 +25,28 @@
     </div>
 
     <div class="row">
+
       <div class= "container">
         <div class="row welcome-forms">
-          <div class="col s12 m12 l6 welcome">
-            <% include ./partials/registerform.ejs %></div>
 
+
+
+          <% if (login) { %>
+            <p><center>You are currently logged in as<br><strong>USERNAME</strong></center></p>
+          <% } else { %>
+          <div class="col s12 m12 l6 welcome">
+            <% include ./partials/registerform.ejs %>
+          </div>
           <div class="col s12 m12 l6 welcome">
             <% include ./partials/loginform.ejs %>
+          <% } %>
           </div>
+
+
+
         </div>
       </div>
+
     </div>
 
     <!-- paralax effect -->

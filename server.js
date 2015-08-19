@@ -51,6 +51,12 @@ app.use(session({secret: process.env.SECRET}));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// use Middleware for isAuthenticated in views
+app.use(function (req, res, next) {
+    res.locals.login = req.isAuthenticated();
+    next();
+});
+
 
 app.use('/', routes);
 
@@ -60,6 +66,8 @@ var User = require('./models/User');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
 
 
 // catch 404 and forward to error handler
