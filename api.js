@@ -5,8 +5,6 @@ var request = require('request');
 var _ = require('underscore');
 var Game = require('./models/Game');
 
-var test = new Game();
-console.log(test);
 
   // -------------------------------------------------------------------------//
   //                             FUNCTION DEFINITIONS                         //
@@ -94,16 +92,26 @@ console.log(test);
   });
 });
 
+function startRound() {
 
-  // -------------------------------------------------------------------------//
-  //                              NESTED AJAX CALLS                           //
+}
 
+function playSong() {
 
+}
 
+function multiChoice() {
 
+}
 
+function pickAChoice() {
 
+}
 
-  // -------------------------------------------------------------------------//
+function scoring() {
 
+}
 
+function endRound() {
+
+}
