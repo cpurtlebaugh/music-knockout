@@ -1,5 +1,27 @@
-// console.log('connected JS file');
-// var socket = io();
+console.log('connected JS file');
+
+// make socket global
+var clientIo;
+
+// DOM CONTENT LOADED
+$(document).ready(function() {
+  // load our socket object
+  clientIo = io();
+
+  // parallax effect
+  $('.parallax').parallax();
+
+  // fade effect
+  // $("#welcomeIntro").on('click', function() {
+  //   $(this).fadeOut(0);
+  // });
+
+  // on socket connection established..
+  clientIo.on('user-connected', function(data) {
+    console.log("Congrats, we've connected to the GAME-GATE!!!!", data);
+  });
+});
+
 
 // function initiate() {
 
@@ -136,12 +158,4 @@
 
 
 
-$("#welcomeIntro").on('click', function() {
-  $(this).fadeOut(0);
-});
 
-
-//paralax effect
-$(document).ready(function() {
-  $('.parallax').parallax();
-});

@@ -7,6 +7,13 @@ title {
   text-align: center;
 }
 
+/*facebook button positioning*/
+
+.facebook-button {
+  margin-right: 250px;
+  margin-top: 25px;
+}
+
 /*first container on index page*/
 
 #hello {

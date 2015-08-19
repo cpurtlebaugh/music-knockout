@@ -20,10 +20,16 @@ var GameSchema = new mongoose.Schema({
     default: Date.now
   },
   updated_at: {
-    type: Date ,
+    type: Date,
     default: Date.now
   }
 });
+
+GameSchema.statics.getState = function(callback) {
+  this.find({}, function(err, games) {
+    callback(err, games[0]);
+  });
+};
 
 // Figure out how to attach these to the schema, then, export them.
 
