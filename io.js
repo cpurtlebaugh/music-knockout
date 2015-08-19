@@ -1,12 +1,15 @@
-var io = require('socket.io')();
+var serverIo = require('socket.io')();
 
-io.on('connection', function (socket) {
+serverIo.on('connection', function (socket) {
   console.log('Client connected to socket.io!');
 
-  socket.on('start-game', function(){
-    io.emit('start-game');
-  })
+  serverIo.emit('user-connected');
+
+  // socket.on('start-game', function(){
+  //   io.emit('start-game');
+  // });
+
 
 });
 
-module.exports = io;
+module.exports = serverIo;
