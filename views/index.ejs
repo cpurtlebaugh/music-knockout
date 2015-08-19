@@ -32,7 +32,8 @@
 
 
           <% if (login) { %>
-            <p><center>You are currently logged in as<br><strong>USERNAME</strong></center></p>
+            <p><center>You are currently logged in as<br><strong><%= current_user.username %></strong></center></p>
+            <p><a href="/game">Play the Game</a></p>
           <% } else { %>
           <div class="col s12 m12 l6 welcome">
             <% include ./partials/registerform.ejs %>

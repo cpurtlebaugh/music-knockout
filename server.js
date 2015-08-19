@@ -53,8 +53,12 @@ app.use(passport.session());
 
 // use Middleware for isAuthenticated in views
 app.use(function (req, res, next) {
-    res.locals.login = req.isAuthenticated();
-    next();
+  res.locals.login = req.isAuthenticated();
+  if (res.locals.login) {
+    res.locals.current_user = req.user;
+  }
+
+  next();
 });
 
 

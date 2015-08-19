@@ -20,7 +20,7 @@ var GameSchema = new mongoose.Schema({
     default: Date.now
   },
   updated_at: {
-    type: Date ,
+    type: Date,
     default: Date.now
   }
 });
