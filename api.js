@@ -5,6 +5,9 @@ var request = require('request');
 var _ = require('underscore');
 var Game = require('./models/Game');
 
+var game = new Game();
+console.log(game);
+
 
   // -------------------------------------------------------------------------//
   //                             FUNCTION DEFINITIONS                         //
@@ -80,6 +83,10 @@ var Game = require('./models/Game');
             console.log(typeof chosenSong);
             console.log(chosenSong.name)
             console.log(chosenSong.artists[0].name);
+
+            game.currentSong.artist = chosenSong.artists[0].name;
+            game.currentSong.track = chosenSong.name;
+            console.log(game);
 
             relatedSongs.forEach(function(song){
               console.log(song.name);
