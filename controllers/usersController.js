@@ -27,7 +27,7 @@ function createUser(req, res, next) {
 function showUser(req, res, next) {
   var user = User.findById({_id: req.params.id}, function(err, user){
     if(err) res.json({message: 'Could not find that user b/c:' + err});
-    res.render('/users/show', {title: user.first_name, user: user});
+    res.render('./users/show', {user: req.user});
   });
 }
 
