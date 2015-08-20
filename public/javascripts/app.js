@@ -33,13 +33,19 @@ $(document).ready(function() {
     appendSongToBody();
   });
 
+  clientIo.on('endRound', function(data){
+    console.log(data);
+  })
+
   // clientIo.on('multiChioce', function(data) {
 
   // });
 
-  clientIo.on('pickAChoice', function(data) {
+  // For now, do the win logic on the client side.
 
-  });
+  // clientIo.on('pickAChoice', function(data) {
+
+  // });
 
   clientIo.on('scoring', function(data) {
 
@@ -77,7 +83,7 @@ function appendSongToBody() {
   // Append the table to the game-board:
   $('#game-board').append(gameTable);
 
-  $('#game-table').on('submit', function(el){
+  $('#game-table').on('submit', function(){
     var selectedAnswer = $('input:checked').next().html().split(' - ');
     checkSubmittedAnswer(selectedAnswer);
   });
@@ -86,6 +92,7 @@ function appendSongToBody() {
 function checkSubmittedAnswer(answer) {
   if(answer[0] === game.currentSong.track && answer[1] === game.currentSong.artist) {
     console.log("correct");
+    clientIo.emit('endRound', "Taylor");
   } else {
     console.log("incorrect");
   }

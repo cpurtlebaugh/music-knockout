@@ -108,10 +108,12 @@ var game = new Game(),
 
 game.startRound();
 
-serverIo.on('connection', function(s) {
-  socket = s;
+serverIo.on('connection', function(socket) {
 
-  serverIo.emit('user-connected', game);
+  socket.emit('user-connected', game);
+  socket.on('endRound', function(data){
+    socket.emit('endRound', "Taylor won");
+  })
 
   // When client's connect
   console.log('Client connected to socket.io!');
