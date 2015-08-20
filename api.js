@@ -6,14 +6,16 @@
 
 var rp = require('request-promise');
 var _  = require('underscore');
+var Game = require('./models/Game');
 
-var api = {};
+var game = new Game();
+var api = game;
 
 // -------------------------------------------------------------------------//
 //                             FUNCTION DEFINITIONS                         //
 
 // For now, we will have a prechosen list of artists to use.
-api.artists = [
+artists = [
   "6S2OmqARrzebs0tKUEyXyp", "3TVXtAsR1Inumwj472S9r4", "6DIS6PRrLS3wbnZsf7vYic",
   "6eUKZXaKkcviH0Ku9w2n3V", "4NHQUGzhtTLFvgF5SZesLK", "04gDigrS5kc9YWfZHwBETP",
   "0C8ZW7ezQVs4URX5aX7Kqx", "07YZf4WDAMNwqr4jfgOZ8y", "6PXS4YHDkKvl1wkIl4V8DL",
@@ -22,18 +24,18 @@ api.artists = [
 ];
 
 // Grabs a random artist from the array of pre-selected artists.
-api.randomArtist = function() {
-  return api.artists[Math.floor(Math.random() * api.artists.length)];
+randomArtist = function() {
+  return artists[Math.floor(Math.random() * artists.length)];
 };
 
 // Given an artist, this returns a list of related artists to use as other
 // multiplice choice answer for each quiz question.
-api.getRelatedArtists = function(artist) {
+getRelatedArtists = function(artist) {
   return rp("https://api.spotify.com/v1/artists/" + artist + "/related-artists");
 };
 
 // Sorts the array of related artists by popularity, descending.
-api.sortRelatedArtists = function(relatedArtistsArray) {
+sortRelatedArtists = function(relatedArtistsArray) {
   return relatedArtistsArray.sort(function(a, b) {
     return b.popularity - a.popularity;
   });
@@ -41,63 +43,66 @@ api.sortRelatedArtists = function(relatedArtistsArray) {
 
 // Grab the top 2 songs from the top 5 most popular related artists and put them
 // in an array.
-api.getArtistTopTracks = function(artistId) {
+getArtistTopTracks = function(artistId) {
   return rp("https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US");
 };
 
-  // -------------------------------------------------------------------------//
 
-  // var chosenArtist = randomArtist(artists);
-  // console.log(chosenArtist);
+// API Call Code:
 
-  // var chosenSong = getArtistTopTracks(chosenArtist);
+var apiCall = function() {
+  var chosenArtist = randomArtist();
+  var chosenSong = getArtistTopTracks(chosenArtist);
+  chosenSong.then(function(data) {
+    chosenSong = JSON.parse(data).tracks;
+    chosenSong = _.shuffle(chosenSong)[0];
+    this.currentSong = chosenSong;
+    console.log(currentSong);
 
-  // First AJAX Request:
-//   chosenSong.then(function(data) {
-//     chosenSong = JSON.parse(data).tracks;
-//     // Shuffle songs using Underscore JS.
-//     chosenSong = _.shuffle(chosenSong)[0];
+    var relatedArtists = getRelatedArtists(chosenArtist).then(function(data) {
+      JSON.parse(data);
+      relatedArtists = sortRelatedArtists(JSON.parse(data).artists);
+      var leftSide = relatedArtists.slice(0, Math.round(relatedArtists.length / 2));
+      var topRelatedArtists = [];
 
-//     //
-//     var relatedArtists = getRelatedArtists(chosenArtist);
+      for (var i = 0; i < 4; i++) {
+        topRelatedArtists.push(leftSide.pop(randomArtist(leftSide)));
+      }
 
-//     // Second AJAX Request, then...:
-//     relatedArtists.then(function(data){
-//       relatedArtists = sortRelatedArtists(JSON.parse(data).artists);
+      var relatedSongs = [];
 
-//       var leftSide = relatedArtists.slice(0, Math.round(relatedArtists.length / 2));
+      for (var i = 0; i < 4; i++) {
+        var topTracks = getArtistTopTracks(topRelatedArtists[i].id).then(function(data) {
+          relatedSongs.push(JSON.parse(data).tracks[0]);
+          // After 4 songs have been pushed, get ready to append the quiz form.
 
-//       var topRelatedArtists = [];
-//       for(var i = 0; i < 4; i++) {
-//         topRelatedArtists.push(leftSide.pop(randomArtist(leftSide)));
-//       }
+          if (relatedSongs.length === 4) {
+            game.currentSong.artist = chosenSong.artists[0].name;
+            game.currentSong.track = chosenSong.name;
+            game.currentSong.preview = chosenSong.preview_url;
 
-//       var relatedSongs = [];
+            relatedSongs.forEach(function(song) {
+              game.wrongSongs.push(song);
+            });
 
-//       for (var i = 0; i < 4; i++) {
+            game.songList = _.shuffle(relatedSongs.concat(chosenSong));
+            game.songList = game.songList.map(function(song){
+              return [song.name, song.artists[0].name];
+            });
 
-//         // Third AJAX Request:
-//         var topTracks = getArtistTopTracks(topRelatedArtists[i].id).then(function(data){
-//           relatedSongs.push(JSON.parse(data).tracks[0]);
-//           // After 4 songs have been pushed, get ready to append the quiz form.
-//           if (relatedSongs.length === 4) {
-//             console.log(typeof chosenSong);
-//             console.log(chosenSong.name)
-//             console.log(chosenSong.artists[0].name);
+            console.log(game);
 
-//             game.currentSong.artist = chosenSong.artists[0].name;
-//             game.currentSong.track = chosenSong.name;
-//             console.log(game);
+            api.game = game;
 
-//             relatedSongs.forEach(function(song){
-//               console.log(song.name);
-//               console.log(song.artists[0].name);
-//             });
-//           }
-//         });
-//       }
+            // serverIo.emit('playSong', game);
+          }
+        });
+      }
+    });
+  });
+}
 
-//   });
-// });
+// Calls the API call function and exports the data returned in the game property of the `api` object.
+apiCall();
 
 module.exports = api;

@@ -33,10 +33,6 @@ $(document).ready(function() {
     appendSongToBody();
   });
 
-  clientIo.on('endRound', function(data){
-    console.log(data);
-  })
-
   // clientIo.on('multiChioce', function(data) {
 
   // });
@@ -52,7 +48,7 @@ $(document).ready(function() {
   });
 
   clientIo.on('endRound', function(data) {
-
+    console.log(data);
   });
 
 
@@ -92,8 +88,10 @@ function appendSongToBody() {
 function checkSubmittedAnswer(answer) {
   if(answer[0] === game.currentSong.track && answer[1] === game.currentSong.artist) {
     console.log("correct");
-    clientIo.emit('endRound', "Taylor");
+    $('#game-board').addClass('animated tada');
+    clientIo.emit('endRound', "Taylor won");
   } else {
+    $('#game-board').addClass('animated shake');
     console.log("incorrect");
   }
 }
