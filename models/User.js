@@ -6,7 +6,8 @@ var User = new mongoose.Schema({
   first_name: String,
   last_name: String,
   age: Number,
-  wins: Number
+  wins: Number,
+  image_url: String
   // trophies: [Trophies]
 });
 

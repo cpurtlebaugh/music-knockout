@@ -105,12 +105,16 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
 router.get('/users/:id/trophies', trophiesController.getTrophies);
 
 // Users
+router.get('/users', function (req, res) {
+  res.render('users/:id');
+});
+
 router.get('/users', usersController.getAll);
 router.get('/users/new', usersController.newUser);
 router.post('/users', usersController.createUser);
-router.get('/users/new', usersController.showUser);
-router.get('/users/new', usersController.editUser);
-router.put('/users/', usersController.updateUser);
+// router.get('/users/:id', usersController.showUser);
+router.get('/users/:id/edit', usersController.editUser);
+router.put('/users/:id', usersController.updateUser);
 router.delete('/users/:id', usersController.deleteUser);
 router.get('/game', usersController.mainGame);
 
