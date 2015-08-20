@@ -20,6 +20,10 @@ $(document).ready(function() {
   clientIo.on('user-connected', function(data) {
     console.log("Congrats, we've connected to the GAME-GATE!!!!", data);
   });
+
+  clientIo.on('startRound', function(data) {
+    console.log("Start your engines!");
+  });
 });
 
 
