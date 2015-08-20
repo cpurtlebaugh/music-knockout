@@ -13,6 +13,7 @@ function newUser(req, res, next) {
 }
 
 function mainGame(req, res) {
+  // Is this where we trigger the startGame() function ?????? By importing the io.js into here.
   res.render('game/game');
 }
 
