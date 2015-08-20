@@ -1,7 +1,8 @@
 body {
   font: 14px 'Raleway', Helvetica, Arial, sans-serif;
   position: relative;
-  background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
+  background: url('/images/musicknockout.gif');
+  background-size: cover;
   z-index: -1;
 }
 
@@ -162,10 +163,35 @@ footer h5 {
 
 .info-box {
   height: 600px;
+  margin: 150px auto;
+  width: 500px; 
+}
+
+.info-table {
+  background: #ffffff;
+  height: 500px;
+  
+}
+
+.info-box h3{
+  text-align: center; 
 
 }
 
 
+.edit-button {
+  position: absolute;
+  left:680px;
+}
+
+#addInfo {
+  position: absolute;
+  cursor: pointer;
+  height: 300px;
+  width: 300px;
+  background: #ffffff;
+  color: lightBlue;
+}
 
 
 

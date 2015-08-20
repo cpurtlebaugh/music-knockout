@@ -28,7 +28,7 @@ function createUser(req, res, next) {
 function showUser(req, res, next) {
   var user = User.findById({_id: req.params.id}, function(err, user){
     if(err) res.json({message: 'Could not find that user b/c:' + err});
-    res.render('./users/show', {user: req.user.id});
+    res.render('users/show', {user: req.user});
   });
 }
 
@@ -38,27 +38,29 @@ function editUser(req, res) {
    if(err) res.json({message: 'Could not find user b/c:' + err});
    User.findById(req.params.id, function(err, user) {
      if(err) res.json({message: 'Could not find user b/c:' + err});
-     res.render('users/edit', {user: user});
+     res.render('users/edit', {user: req.user});
    });
  });
 }
 
 function updateUser(req, res) {
 
-       // use our bear model to find the bear we want
-       user.findById(req.params.bear_id, function(err, bear) {
+       // use our user model to find the bear we want
+       user.findById(req.params.user_id, function(err, user) {
 
            if (err)
                res.send(err);
 
-           user.first_name = req.body.first_name;  // update the bears info
+                // username: req.body.username,
+                // first_name: req.body.first_name,
+                // last_name: req.body.last_name,
 
-           // save the bear
+           // save the user
            user.save(function(err) {
                if (err)
                    res.send(err);
 
-               res.json({ message: 'Bear updated!' });
+               res.json({ message: 'User updated!' });
            });
 
        });
