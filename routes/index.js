@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 //login
 router.get('/login', function(req, res) {
-  res.render('users/login', {user : req.user});
+  res.render('./users/login', {user : req.user});
 });
 
 
@@ -25,14 +25,14 @@ router.post('/login', passport.authenticate(
   function (req, res, next) {
     req.session.save(function (err) {
       if (err) return next(err);
-      res.redirect('/');
+      res.redirect('/users/' + req.user.id);
     });
   }
 );
 
 // register
 router.get('/register', function (req, res) {
-  res.render('users/register');
+  res.render('./users/register');
 });
 
 // Handle the Submission of the Register Form
