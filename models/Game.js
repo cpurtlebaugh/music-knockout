@@ -12,7 +12,8 @@ var GameSchema = new mongoose.Schema({
   },
   currentSong: {
     artist: String,
-    track: String
+    track: String,
+    preview: String
   },
   wrongSongs: Array,
   created_at: {
