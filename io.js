@@ -33,7 +33,6 @@ Game.prototype.playSong = function() {
     chosenSong = JSON.parse(data).tracks;
     chosenSong = _.shuffle(chosenSong)[0];
     this.currentSong = chosenSong;
-    serverIo.emit('playSong', currentSong);
 
     var relatedArtists = api.getRelatedArtists(chosenArtist).then(function(data) {
       JSON.parse(data);
@@ -101,7 +100,7 @@ Game.prototype.endRound = function() {
 };
 
 var game = new Game(),
-  socket;
+    socket;
 
 game.startRound();
 

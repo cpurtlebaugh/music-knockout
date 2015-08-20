@@ -28,7 +28,6 @@ $(document).ready(function() {
   });
 
   clientIo.on('playSong', function(data) {
-    console.log("Here's the random chosen song:", data);
     game = data;
     appendSongToBody();
   });
@@ -53,8 +52,7 @@ $(document).ready(function() {
 });
 
 function appendSongToBody() {
-  console.log('selected song: ' + game.currentSong);
-  console.log('wrong songs: ' + game.wrongSongs)
+  console.log('game');
 }
 
 
