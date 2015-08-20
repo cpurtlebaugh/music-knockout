@@ -61,7 +61,7 @@ Game.prototype.playSong = function() {
               game.wrongSongs.push(song);
             });
 
-            game.allSongs = _.(relatedSongs.concat(chosenSong));
+            game.allSongs = _.shuffle(relatedSongs.concat(chosenSong));
 
             serverIo.emit('playSong', game);
           }
@@ -101,7 +101,7 @@ Game.prototype.endRound = function() {
 };
 
 var game = new Game(),
-  socket;
+    socket;
 
 game.startRound();
 
