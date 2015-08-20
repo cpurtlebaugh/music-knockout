@@ -1,4 +1,6 @@
 console.log('connected JS file');
+var game;
+
 
 // make socket global
 var clientIo;
@@ -22,9 +24,38 @@ $(document).ready(function() {
   });
 
   clientIo.on('startRound', function(data) {
-    console.log("Start your engines!");
+    console.log("Start your engines!", data);
   });
+
+  clientIo.on('playSong', function(data) {
+    console.log("Here's the random chosen song:", data);
+    game = data;
+    appendSongToBody();
+  });
+
+  clientIo.on('multiChioce', function(data) {
+
+  });
+
+  clientIo.on('pickAChoice', function(data) {
+
+  });
+
+  clientIo.on('scoring', function(data) {
+
+  });
+
+  clientIo.on('endRound', function(data) {
+
+  });
+
+
 });
+
+function appendSongToBody() {
+  console.log('selected song: ' + game.currentSong);
+  console.log('wrong songs: ' + game.wrongSongs)
+}
 
 
 // function initiate() {
