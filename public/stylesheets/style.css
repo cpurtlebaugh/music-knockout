@@ -1,14 +1,12 @@
 body {
   font: 14px 'Raleway', Helvetica, Arial, sans-serif;
   position: relative;
-<<<<<<< HEAD
   background: url("http://wooderice.com/wp-content/uploads/2014/09/concert.jpg");
+  z-index: -1;
 }
 
 a {
   color: #00B7FF;
-=======
->>>>>>> f61b38a4fd330db33b45cd1c8da70515e043d372
 }
 
 title {
@@ -82,17 +80,10 @@ title {
 /*nav bar*/
 
 nav {
-<<<<<<< HEAD
-  background: rgba(0,0,0, 0.0);
-  position: fixed;
-  z-index: 5;
-  box-shadow: none;
-=======
   background: rgba(000,000,000, .9);
   position: fixed;
   top: 0;
   z-index: 3;
->>>>>>> f61b38a4fd330db33b45cd1c8da70515e043d372
 }
 
 /*forms*/
@@ -144,9 +135,6 @@ nav {
   font-weight: bold;
   color: #777;
 }
-<<<<<<< HEAD
-]
-=======
 
 /*footer*/
 footer {
@@ -163,4 +151,14 @@ footer h5 {
   font-style: italic;
 }
 
->>>>>>> 6e2943be91039fee7053586cd5287e913271de3f
+.overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0, 0, 0, 0.55);
+    background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat scroll transparent\9; /* ie fallback png background image */
+    z-index:9999;
+    color:white;
+}
