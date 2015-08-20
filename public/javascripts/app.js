@@ -1,5 +1,62 @@
-// console.log('connected JS file');
-// var socket = io();
+console.log('connected JS file');
+var game;
+
+
+// make socket global
+var clientIo;
+
+// DOM CONTENT LOADED
+$(document).ready(function() {
+  // load our socket object
+  clientIo = io();
+
+  // parallax effect
+  $('.parallax').parallax();
+
+  // fade effect
+  // $("#welcomeIntro").on('click', function() {
+  //   $(this).fadeOut(0);
+  // });
+
+  // on socket connection established..
+  clientIo.on('user-connected', function(data) {
+    console.log("Congrats, we've connected to the GAME-GATE!!!!", data);
+  });
+
+  clientIo.on('startRound', function(data) {
+    console.log("Start your engines!", data);
+  });
+
+  clientIo.on('playSong', function(data) {
+    console.log("Here's the random chosen song:", data);
+    game = data;
+    appendSongToBody();
+  });
+
+  clientIo.on('multiChioce', function(data) {
+
+  });
+
+  clientIo.on('pickAChoice', function(data) {
+
+  });
+
+  clientIo.on('scoring', function(data) {
+
+  });
+
+  clientIo.on('endRound', function(data) {
+
+  });
+
+
+});
+
+function appendSongToBody() {
+  console.log('selected song: ' + game.currentSong);
+  console.log('wrong songs: ' + game.wrongSongs)
+}
+
 
 // function initiate() {
 
@@ -136,12 +193,4 @@
 
 
 
-$("#welcomeIntro").on('click', function() {
-  $(this).fadeOut(0);
-});
 
-
-//paralax effect
-$(document).ready(function() {
-  $('.parallax').parallax();
-});
