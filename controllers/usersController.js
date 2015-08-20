@@ -25,46 +25,48 @@ function createUser(req, res, next) {
 }
 
 function showUser(req, res, next) {
-  var user = User.findByid({_id: req.params.id}, function(err, user){
+  var user = User.findById({_id: req.params.id}, function(err, user){
     if(err) res.json({message: 'Could not find that user b/c:' + err});
-    res.render('/users/show', {title: user.name, user: user});
+    res.render('/users/show', {title: user.first_name, user: user});
   });
 }
 
-function editUser(req, res, next) {
-  User.findById({_id: req.params.id}, function(err, user) {
-    if (err) res.json({message: 'Could not find that user b/c' + err});
-
-    if (req.body.first_name) user.first_name = req.body.first_name;
-    if (req.body.first_name) user.last_name = req.body.last_name;
-    if (req.body.first_name) user.email = req.body.email;
-    if (req.body.first_name) user.password = req.body.password;
-
-    user.save(function(err){
-      if (err) res.json({message: 'Could not update your user profile b/c' + err});
-      res.json({message: 'Succesfully updated your user profile.'});
-    });
-  });
+function editUser(req, res) {
+ // Edit view still needs to display all candies...
+ User.find(function(err, users) {
+   if(err) res.json({message: 'Could not find user b/c:' + err});
+   User.findById(req.params.id, function(err, user) {
+     if(err) res.json({message: 'Could not find user b/c:' + err});
+     res.render('users/edit', {user: user});
+   });
+ });
 }
 
-function updateUser(req, res, next) {
-  User.update({_id: req.params.id}, {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    wins: req.body.wins,
-    trophies: req.body.trophies
-  }, function(err) {
-      if (err) res.json({message: 'Could not find that user b/c ' + err})
-      res.redirect('/users');
-  })
-}
+function updateUser(req, res) {
+
+       // use our bear model to find the bear we want
+       user.findById(req.params.bear_id, function(err, bear) {
+
+           if (err)
+               res.send(err);
+
+           user.first_name = req.body.first_name;  // update the bears info
+
+           // save the bear
+           user.save(function(err) {
+               if (err)
+                   res.send(err);
+
+               res.json({ message: 'Bear updated!' });
+           });
+
+       });
+   }
 
 function deleteUser(req, res, next) {
   User.findByIdAndRemove(req.params.id, function(err){
     if (err) res.json({message: 'Could not find that user b/c' + err})
-      res.redirect('/users')
+      res.redirect('/')
   });
 }
 
