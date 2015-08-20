@@ -9,7 +9,6 @@ var _  = require('underscore');
 var Game = require('./models/Game');
 
 var game = new Game();
-var api = game;
 
 // -------------------------------------------------------------------------//
 //                             FUNCTION DEFINITIONS                         //
@@ -90,8 +89,6 @@ var apiCall = function() {
               return [song.name, song.artists[0].name];
             });
 
-            console.log(game);
-
             api.game = game;
 
             // serverIo.emit('playSong', game);
@@ -102,7 +99,6 @@ var apiCall = function() {
   });
 }
 
-// Calls the API call function and exports the data returned in the game property of the `api` object.
-apiCall();
-
-module.exports = api;
+module.exports = {
+  apiCall: apiCall
+}
