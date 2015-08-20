@@ -8,7 +8,7 @@ var Game = function() {
   this.status = 'startRound';
   this.currentSong = {};
   this.wrongSongs = [];
-  this.allSongs = [];
+  this.songList = [];
 };
 
 Game.prototype.startRound = function() {
@@ -24,50 +24,7 @@ Game.prototype.startRound = function() {
 Game.prototype.playSong = function() {
   this.status = 'playSong';
 
-  // get the song
-  var chosenArtist = api.randomArtist();
-
-  // ...
-  var chosenSong = api.getArtistTopTracks(chosenArtist);
-  chosenSong.then(function(data) {
-    chosenSong = JSON.parse(data).tracks;
-    chosenSong = _.shuffle(chosenSong)[0];
-    this.currentSong = chosenSong;
-
-    var relatedArtists = api.getRelatedArtists(chosenArtist).then(function(data) {
-      JSON.parse(data);
-      relatedArtists = api.sortRelatedArtists(JSON.parse(data).artists);
-      var leftSide = relatedArtists.slice(0, Math.round(relatedArtists.length / 2));
-      var topRelatedArtists = [];
-
-      for (var i = 0; i < 4; i++) {
-        topRelatedArtists.push(leftSide.pop(api.randomArtist(leftSide)));
-      }
-
-      var relatedSongs = [];
-
-      for (var i = 0; i < 4; i++) {
-        var topTracks = api.getArtistTopTracks(topRelatedArtists[i].id).then(function(data) {
-          relatedSongs.push(JSON.parse(data).tracks[0]);
-          // After 4 songs have been pushed, get ready to append the quiz form.
-
-          if (relatedSongs.length === 4) {
-            game.currentSong.artist = chosenSong.artists[0].name;
-            game.currentSong.track = chosenSong.name;
-            game.currentSong.preview = chosenSong.preview_url;
-
-            relatedSongs.forEach(function(song) {
-              game.wrongSongs.push(song);
-            });
-
-            game.allSongs = _.shuffle(relatedSongs.concat(chosenSong));
-
-            serverIo.emit('playSong', game);
-          }
-        });
-      }
-    });
-  });
+  console.log(api.game);
   setTimeout(this.multiChoice.bind(this), 2000);
 };
 
@@ -104,10 +61,13 @@ var game = new Game(),
 
 game.startRound();
 
-serverIo.on('connection', function(s) {
-  socket = s;
+serverIo.on('connection', function(socket) {
 
-  serverIo.emit('user-connected', game);
+  socket.emit('user-connected', api.game);
+
+  socket.on('endRound', function(data){
+    serverIo.emit('endRound', data);
+  })
 
   // When client's connect
   console.log('Client connected to socket.io!');
