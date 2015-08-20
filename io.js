@@ -8,7 +8,7 @@ var Game = function() {
   this.status = 'startRound';
   this.currentSong = {};
   this.wrongSongs = [];
-  this.allSongs = [];
+  this.songList = [];
 };
 
 Game.prototype.startRound = function() {
@@ -33,6 +33,7 @@ Game.prototype.playSong = function() {
     chosenSong = JSON.parse(data).tracks;
     chosenSong = _.shuffle(chosenSong)[0];
     this.currentSong = chosenSong;
+    console.log(currentSong);
 
     var relatedArtists = api.getRelatedArtists(chosenArtist).then(function(data) {
       JSON.parse(data);
@@ -60,7 +61,10 @@ Game.prototype.playSong = function() {
               game.wrongSongs.push(song);
             });
 
-            game.allSongs = _.shuffle(relatedSongs.concat(chosenSong));
+            game.songList = _.shuffle(relatedSongs.concat(chosenSong));
+            game.songList = game.songList.map(function(song){
+              return [song.name, song.artists[0].name];
+            });
 
             serverIo.emit('playSong', game);
           }

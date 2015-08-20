@@ -21,6 +21,7 @@ $(document).ready(function() {
   // on socket connection established..
   clientIo.on('user-connected', function(data) {
     console.log("Congrats, we've connected to the GAME-GATE!!!!", data);
+    game = data;
   });
 
   clientIo.on('startRound', function(data) {
@@ -32,9 +33,9 @@ $(document).ready(function() {
     appendSongToBody();
   });
 
-  clientIo.on('multiChioce', function(data) {
+  // clientIo.on('multiChioce', function(data) {
 
-  });
+  // });
 
   clientIo.on('pickAChoice', function(data) {
 
@@ -52,8 +53,44 @@ $(document).ready(function() {
 });
 
 function appendSongToBody() {
-  console.log('game');
+
+  //First, append the embedded hidden player;
+  $('body').append('<audio id="song-player" style="display: none" src="' +
+    game.currentSong.preview + '"' + 'preload="auto" controls autoplay></audio>');
+
+  // Create the table to append:
+  var gameTable =
+  '<form action="#" id="game-table" class="animated bounceInDown"><p>' +
+    '<input name="group1" type="radio" id="ans1" /><label for="ans1">' +
+      game.songList[0][0] + ' - ' + game.songList[0][1] +
+    '</label></p><p><input name="group1" type="radio" id="ans2" /><label for="ans2">' +
+      game.songList[1][0] + ' - ' + game.songList[1][1] +
+    '</label></p><p><input class="group1" name="group1" type="radio" id="ans3"  /><label for="ans3">'  +
+      game.songList[2][0] + ' - ' + game.songList[2][1] +
+    '</label></p><p><input name="group1" type="radio" id="ans4" /><label for="ans4">' +
+      game.songList[3][0] + ' - ' + game.songList[3][1] +
+    '</label></p><p><input name="group1" type="radio" id="ans5" /><label for="ans5">' +
+      game.songList[4][0] + ' - ' + game.songList[4][1] +
+    '</label></p><p><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></p>' +
+  '</form>';
+
+  // Append the table to the game-board:
+  $('#game-board').append(gameTable);
+
+  $('#game-table').on('submit', function(el){
+    var selectedAnswer = $('input:checked').next().html().split(' - ');
+    checkSubmittedAnswer(selectedAnswer);
+  });
 }
+
+function checkSubmittedAnswer(answer) {
+  if(answer[0] === game.currentSong.track && answer[1] === game.currentSong.artist) {
+    console.log("correct");
+  } else {
+    console.log("incorrect");
+  }
+}
+
 
 
 // function initiate() {
