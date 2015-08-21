@@ -18,7 +18,7 @@ function mainGame(req, res) {
 }
 
 function createUser(req, res, next) {
-  var user = new User(reqbody.user);
+  var user = new User(req.body.user);
   User.save(function(err){
     if (err) res.json({message: 'Could not create user b/c:' + err});
   });
@@ -26,48 +26,46 @@ function createUser(req, res, next) {
 }
 
 function showUser(req, res, next) {
-  var user = User.findById({_id: req.params.id}, function(err, user){
+  User.findById({_id: req.params.id}, function(err, user){
     if(err) res.json({message: 'Could not find that user b/c:' + err});
-    res.render('./users/show', {user: req.user.id});
+    res.render('users/show', {user: req.user});
   });
 }
 
 function editUser(req, res) {
- // Edit view still needs to display all candies...
  User.find(function(err, users) {
    if(err) res.json({message: 'Could not find user b/c:' + err});
    User.findById(req.params.id, function(err, user) {
      if(err) res.json({message: 'Could not find user b/c:' + err});
-     res.render('users/edit', {user: user});
+     res.render('users/edit', {user: req.user});
    });
  });
 }
 
-function updateUser(req, res) {
 
-       // use our bear model to find the bear we want
-       user.findById(req.params.bear_id, function(err, bear) {
+function updateUser(req, res, next) {
+  var id = req.params.id;
 
-           if (err)
-               res.send(err);
+  User.findById({_id: id}, function(error, user) {
+    if (error) res.json({message: 'Could not find user because ' + error});
 
-           user.first_name = req.body.first_name;  // update the bears info
+    if (req.body.first_name) user.first_name = req.body.first_name;
+    if (req.body.last_name) user.last_name = req.body.last_name;
+    if (req.body.age) user.age = req.body.age;
+    if (req.body.image_url) user.image_url = req.body.image_url;
 
-           // save the bear
-           user.save(function(err) {
-               if (err)
-                   res.send(err);
+    user.save(function(error) {
+      if (error) res.json({message: 'user successfully updated'});
+      res.redirect('/users/' + id);
+    });
+  });
+}
 
-               res.json({ message: 'Bear updated!' });
-           });
-
-       });
-   }
 
 function deleteUser(req, res, next) {
   User.findByIdAndRemove(req.params.id, function(err){
-    if (err) res.json({message: 'Could not find that user b/c' + err})
-      res.redirect('/')
+    if (err) res.json({message: 'Could not find that user b/c' + err});
+      res.redirect('/');
   });
 }
 
@@ -80,4 +78,4 @@ module.exports = {
   mainGame:   mainGame,
   updateUser: updateUser,
   deleteUser: deleteUser
-}
+};

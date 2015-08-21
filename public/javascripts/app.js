@@ -1,7 +1,6 @@
 console.log('connected JS file');
 var game;
 
-
 // make socket global
 var clientIo;
 
@@ -26,11 +25,13 @@ $(document).ready(function() {
 
   clientIo.on('startRound', function(data) {
     console.log("Start your engines!", data);
+    game = data;
+    clearBoard();
+    appendSongToBody();
   });
 
   clientIo.on('playSong', function(data) {
     game = data;
-    appendSongToBody();
   });
 
   // clientIo.on('multiChioce', function(data) {
@@ -48,48 +49,67 @@ $(document).ready(function() {
   });
 
   clientIo.on('endRound', function(data) {
-    console.log(data);
+    clearBoard();
+<<<<<<< HEAD
+    location.reload(true);
+=======
+    location.reload()
+    // clientIo.emit('startRound');
+>>>>>>> api-feature
   });
 
 
 });
 
+function clearBoard() {
+  $('#song-player').remove();
+  $('#game-table').remove();
+}
+
 function appendSongToBody() {
 
   //First, append the embedded hidden player;
   $('body').append('<audio id="song-player" style="display: none" src="' +
-    game.currentSong.preview + '"' + 'preload="auto" controls autoplay></audio>');
+    game.currentSong.previewUrl + '"' + 'preload="auto" controls autoplay></audio>');
+
+    var currentSongArray = [game.currentSong.currentSongArray];
+    var songList = game.wrongTracks.concat(currentSongArray);
+    songList = _.shuffle(songList);
+    console.log(songList);
 
   // Create the table to append:
   var gameTable =
   '<form action="#" id="game-table" class="animated bounceInDown"><p>' +
     '<input name="group1" type="radio" id="ans1" /><label for="ans1">' +
-      game.songList[0][0] + ' - ' + game.songList[0][1] +
+      songList[0][0] + ' - ' + songList[0][1] + '<span style="display: none">' + songList[0].length + '</span>' +
     '</label></p><p><input name="group1" type="radio" id="ans2" /><label for="ans2">' +
-      game.songList[1][0] + ' - ' + game.songList[1][1] +
+      songList[1][0] + ' - ' + songList[1][1] + '<span style="display: none">' + songList[1].length + '</span>' +
     '</label></p><p><input class="group1" name="group1" type="radio" id="ans3"  /><label for="ans3">'  +
-      game.songList[2][0] + ' - ' + game.songList[2][1] +
+      songList[2][0] + ' - ' + songList[2][1] + '<span style="display: none">' + songList[2].length + '</span>' +
     '</label></p><p><input name="group1" type="radio" id="ans4" /><label for="ans4">' +
-      game.songList[3][0] + ' - ' + game.songList[3][1] +
+      songList[3][0] + ' - ' + songList[3][1] + '<span style="display: none">' + songList[3].length + '</span>' +
     '</label></p><p><input name="group1" type="radio" id="ans5" /><label for="ans5">' +
-      game.songList[4][0] + ' - ' + game.songList[4][1] +
+      songList[4][0] + ' - ' + songList[4][1] + '<span style="display: none">' + songList[4].length + '</span>' +
     '</label></p><p><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></p>' +
   '</form>';
+
+  console.log(gameTable);
 
   // Append the table to the game-board:
   $('#game-board').append(gameTable);
 
   $('#game-table').on('submit', function(){
-    var selectedAnswer = $('input:checked').next().html().split(' - ');
+    var selectedAnswer = parseInt($('input:checked').next().children().html());
     checkSubmittedAnswer(selectedAnswer);
   });
 }
 
 function checkSubmittedAnswer(answer) {
-  if(answer[0] === game.currentSong.track && answer[1] === game.currentSong.artist) {
+  if(answer === 2) {
     console.log("correct");
     $('#game-board').addClass('animated tada');
-    clientIo.emit('endRound', "Taylor won");
+    clientIo.emit('endRound', "");
+    // location.reload();
   } else {
     $('#game-board').addClass('animated shake');
     console.log("incorrect");

@@ -11,6 +11,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Facebook = require('./config/facebook.js');
 var routes = require('./routes/index');
+var methodOverride = require('method-override');
 
 //FOR OAUTH
 passport.serializeUser(function(user, done) {
@@ -36,6 +37,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -54,7 +56,9 @@ app.use(passport.session());
 // use Middleware for isAuthenticated in views
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated();
+  
   if (res.locals.login) {
+    console.log("HI JIM DON'T THINK I'M JANKY: ", req.user)
     res.locals.current_user = req.user;
   }
 

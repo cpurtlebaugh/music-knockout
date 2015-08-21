@@ -13,9 +13,15 @@ var Game = function() {
 
 Game.prototype.startRound = function() {
   this.status = 'startRound';
+  var songs;
+  api.getGameQuestion(function(getGameQuestion){
+    songs = getGameQuestion;
+  });
+
+  console.log(songs);
 
   // emit a socket io event
-  serverIo.emit('startRound');
+  serverIo.emit('startRound', songs);
   console.log('startRound');
 
   setTimeout(this.playSong.bind(this), 2000);
@@ -50,7 +56,6 @@ Game.prototype.scoring = function() {
 
 Game.prototype.endRound = function() {
   this.status = 'endRound';
-  // emit a socket io event
   console.log('endRound');
   setTimeout(this.startRound.bind(this), 2000);
 };
@@ -58,15 +63,27 @@ Game.prototype.endRound = function() {
 var game = new Game(),
     socket;
 
-game.startRound();
-
 serverIo.on('connection', function(socket) {
 
-  socket.emit('user-connected', api.game);
+// serves initial game
+  api.getGameQuestion(function(getGameQuestion){
+    serverIo.emit('startRound', getGameQuestion);
+  });
 
+// ends the rounds
   socket.on('endRound', function(data){
     serverIo.emit('endRound', data);
-  })
+  });
+
+serverIo.on('endRound', function(){
+  api.getGameQuestion(function(getGameQuestion){
+    serverIo.emit('startRound', getGameQuestion);
+  });
+});
+
+  socket.emit('user-connected', api.getGameQuestion);
+
+
 
   // When client's connect
   console.log('Client connected to socket.io!');
