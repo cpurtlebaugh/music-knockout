@@ -174,15 +174,11 @@ footer h5 {
   
 }
 
-.profile-table {
 
-}
-
-.info-box h3{
+.info-box h3 {
   text-align: center; 
 
 }
-
 
 .edit-button {
   position: absolute;
@@ -192,7 +188,7 @@ footer h5 {
 img.img-container {
   border: 1px solid black;
   border-radius: 100px;
-  padding: 0;
+  -webkit-border-radius: 200px;
 }
 
 
