@@ -50,7 +50,7 @@ $(document).ready(function() {
 
   clientIo.on('endRound', function(data) {
     clearBoard();
-    clientIo.emit('startRound');
+    location.reload(true);
   });
 
 
