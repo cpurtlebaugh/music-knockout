@@ -14,7 +14,7 @@ var game = new Game();
 //                             FUNCTION DEFINITIONS                         //
 
 // For now, we will have a prechosen list of artists to use.
-artists = [
+var artists = [
   "6S2OmqARrzebs0tKUEyXyp", "3TVXtAsR1Inumwj472S9r4", "6DIS6PRrLS3wbnZsf7vYic",
   "6eUKZXaKkcviH0Ku9w2n3V", "4NHQUGzhtTLFvgF5SZesLK", "04gDigrS5kc9YWfZHwBETP",
   "0C8ZW7ezQVs4URX5aX7Kqx", "07YZf4WDAMNwqr4jfgOZ8y", "6PXS4YHDkKvl1wkIl4V8DL",
@@ -23,82 +23,154 @@ artists = [
 ];
 
 // Grabs a random artist from the array of pre-selected artists.
-randomArtist = function() {
+var randomArtist = function() {
   return artists[Math.floor(Math.random() * artists.length)];
+};
+
+
+
+// Sorts the array of related artists by popularity, descending.
+var mostPopularArtists = function(artists) {
+  var artists = JSON.parse(artists).artists;
+  // console.log("6. Related artists' ids received: ",
+            // artists.map(function(a) {return a.id;}));
+
+  artists = artists.sort(function(a, b) {
+    return b.popularity - a.popularity;
+  });
+  return mostPopular(artists);
+};
+
+var mostPopular = function(artists) {
+  return artists.slice(0, Math.round(artists.length / 2));
+};
+
+var randomRelatedArtists = function(artists) {
+  artists = mostPopularArtists(artists);
+  artists = _.shuffle(artists);
+  return artists.slice(0,4);
+};
+
+
+
+
+
+// Grab the top 2 songs from the top 5 most popular related artists and put them
+// in an array.
+var getArtistTopTracks = function(artistId) {
+  // console.log("2. Artists' top tracks request sent...");
+  return rp("https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US");
 };
 
 // Given an artist, this returns a list of related artists to use as other
 // multiplice choice answer for each quiz question.
-getRelatedArtists = function(artist) {
+var getRelatedArtists = function(artist) {
+  // console.log("5. Related artists' request sent...");
   return rp("https://api.spotify.com/v1/artists/" + artist + "/related-artists");
 };
 
-// Sorts the array of related artists by popularity, descending.
-sortRelatedArtists = function(relatedArtistsArray) {
-  return relatedArtistsArray.sort(function(a, b) {
-    return b.popularity - a.popularity;
-  });
+
+var parseAllArtistsTopTracks = function(data) {
+  return data.map(JSON.parse)
+             .map(function(trackObject) {
+               return trackObject.tracks
+             });
 };
 
-// Grab the top 2 songs from the top 5 most popular related artists and put them
-// in an array.
-getArtistTopTracks = function(artistId) {
-  return rp("https://api.spotify.com/v1/artists/" + artistId + "/top-tracks?country=US");
+var grabFirstTrack = function(topTracks) {
+  return topTracks[0];
+}
+
+var getChosenTrack = function(data) {
+  var chosenArtistsTopTracks = JSON.parse(data).tracks;
+  // console.log("3. Artists' top track ids received: ",
+              // chosenArtistsTopTracks.map(function(t) {return t.id;}));
+
+  return chosenTrack = _.sample(chosenArtistsTopTracks);
+}
+
+var artistsNames = function(trackArtists) {
+  return trackArtists.map(function(artist) {
+    return artist.name;
+  }).join(', ');
 };
 
+var createWrongTrack = function(track) {
+
+  var track = [
+    track.name,                  // song name
+    artistsNames(track.artists), // artists names
+    track.id
+  ];
+
+  return track;
+};
+
+var buildGameQuestionObject = function(currentSong, wrongTracks) {
+  // get current song data
+  var currentSong = {
+    artistName: artistsNames(chosenTrack.artists),
+    trackName:  chosenTrack.name,
+    previewUrl: chosenTrack.preview_url,
+    apiId:      chosenTrack.id
+  };
+
+  // get wrong song data
+  wrongTracks = _.shuffle(wrongTracks.map(createWrongTrack));
+
+  // emitted object
+  return {
+    currentSong: currentSong,
+    wrongTracks: wrongTracks
+  };
+};
+
+// var api = require('./api')
+// api.apiCall()
 
 // API Call Code:
 
-var apiCall = function() {
+var getGameQuestion = function(callback) {
   var chosenArtist = randomArtist();
-  var chosenSong = getArtistTopTracks(chosenArtist);
-  chosenSong.then(function(data) {
-    chosenSong = JSON.parse(data).tracks;
-    chosenSong = _.shuffle(chosenSong)[0];
-    this.currentSong = chosenSong;
-    console.log(currentSong);
+  // console.log("1. Artist chosen: ", chosenArtist);
 
-    var relatedArtists = getRelatedArtists(chosenArtist).then(function(data) {
-      JSON.parse(data);
-      relatedArtists = sortRelatedArtists(JSON.parse(data).artists);
-      var leftSide = relatedArtists.slice(0, Math.round(relatedArtists.length / 2));
-      var topRelatedArtists = [];
+  getArtistTopTracks(chosenArtist).then(function(tracks) {
 
-      for (var i = 0; i < 4; i++) {
-        topRelatedArtists.push(leftSide.pop(randomArtist(leftSide)));
-      }
+    var chosenTrack = getChosenTrack(tracks);
+    // console.log("4. Chosen track id: ", chosenTrack.id);
 
-      var relatedSongs = [];
+    getRelatedArtists(chosenArtist).then(function(artists) {
 
-      for (var i = 0; i < 4; i++) {
-        var topTracks = getArtistTopTracks(topRelatedArtists[i].id).then(function(data) {
-          relatedSongs.push(JSON.parse(data).tracks[0]);
-          // After 4 songs have been pushed, get ready to append the quiz form.
+      var relatedArtists = randomRelatedArtists(artists);
+      // console.log("7. Artists for questions ids: ",
+        // relatedArtists.map(function(a) {return a.id;}));
 
-          if (relatedSongs.length === 4) {
-            game.currentSong.artist = chosenSong.artists[0].name;
-            game.currentSong.track = chosenSong.name;
-            game.currentSong.preview = chosenSong.preview_url;
+      // Promise.all(
+      //  relatedArtists.map(function(a) {return a.id}).map(getArtistTopTracks)
+      // ).then....
+      Promise.all([
+        getArtistTopTracks(relatedArtists[0].id),
+        getArtistTopTracks(relatedArtists[1].id),
+        getArtistTopTracks(relatedArtists[2].id),
+        getArtistTopTracks(relatedArtists[3].id)
+      ]).then(function(data) {
+        // console.log("8. All artists' top track requests returned...");
 
-            relatedSongs.forEach(function(song) {
-              game.wrongSongs.push(song);
-            });
+        var allArtistsTopTracks = parseAllArtistsTopTracks(data);
+        var wrongTracks = allArtistsTopTracks.map(grabFirstTrack);
+        // console.log("9. Tracks for questions ids: ",
+          // wrongTracks.map(function(t) {return t.id;}));
 
-            game.songList = _.shuffle(relatedSongs.concat(chosenSong));
-            game.songList = game.songList.map(function(song){
-              return [song.name, song.artists[0].name];
-            });
+        var gameQuestionObject = buildGameQuestionObject(chosenTrack, wrongTracks);
+        // console.log("10. Final Game Question Object: ", gameQuestionObject);
 
-            api.game = game;
-
-            // serverIo.emit('playSong', game);
-          }
-        });
-      }
+        // pass object to callbak
+        callback(gameQuestionObject)
+      });
     });
   });
 }
 
 module.exports = {
-  apiCall: apiCall
+  getGameQuestion: getGameQuestion
 }
