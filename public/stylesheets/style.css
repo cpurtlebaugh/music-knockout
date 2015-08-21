@@ -181,14 +181,18 @@ footer h5 {
 }
 
 .edit-button {
-  position: absolute;
-  left:680px;
+  margin: 0 200px;
+
 }
 
 img.img-container {
   border: 1px solid black;
   border-radius: 100px;
-  -webkit-border-radius: 200px;
+  height:200px;  
+}
+
+.update-button {
+  margin: 0 147px;
 }
 
 
