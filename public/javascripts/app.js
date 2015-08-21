@@ -66,10 +66,6 @@ function clearBoard() {
 
 function appendSongToBody() {
 
-  //First, append the embedded hidden player;
-  $('body').append('<audio id="song-player" style="display: none" src="' +
-    game.currentSong.previewUrl + '"' + 'preload="auto" controls autoplay></audio>');
-
     var currentSongArray = [game.currentSong.currentSongArray];
     var songList = game.wrongTracks.concat(currentSongArray);
     songList = _.shuffle(songList);
@@ -95,6 +91,10 @@ function appendSongToBody() {
 
   // Append the table to the game-board:
   $('#game-board').append(gameTable);
+
+    //First, append the embedded hidden player;
+  $('#game-board').append('<audio id="song-player" style="display: none" src="' +
+    game.currentSong.previewUrl + '"' + 'preload="auto" controls autoplay></audio>');
 
   $('#game-table').on('submit', function(){
     var selectedAnswer = parseInt($('input:checked').next().children().html());
