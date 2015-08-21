@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <% include ../partials/head.ejs %>
+  </head> 
+  <body>
+    
+    <nav>
+      <% include ../partials/nav.ejs %>
+    </nav>
+    <div class = 'container info-box'>
+      <h3>Hey You!</h3>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate" name="first_name">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" name="last_night">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="age" type="text" class="validate" name="age">
+          <label for="age">Age</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="image_url" type="image_url" class="validate" name="image_url">
+          <label for="image_url">Image Url:</label>
+        </div>
+      </div>
+
+      <div class="row">
+      <button class="btn waves-effect waves-light left" type="submit" name="action" value="Register">Edit
+      </button>
+      </div>
+    </div>
+  <footer>
+    <% include ../partials/footer.ejs %>
+  </footer>
+
+  </body>
+</html>
+
