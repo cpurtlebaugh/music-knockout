@@ -50,7 +50,12 @@ $(document).ready(function() {
 
   clientIo.on('endRound', function(data) {
     clearBoard();
+<<<<<<< HEAD
     location.reload(true);
+=======
+    location.reload()
+    // clientIo.emit('startRound');
+>>>>>>> api-feature
   });
 
 
@@ -94,7 +99,7 @@ function appendSongToBody() {
   $('#game-board').append(gameTable);
 
   $('#game-table').on('submit', function(){
-    var selectedAnswer = parseInt($('input:checked').next().children().html())
+    var selectedAnswer = parseInt($('input:checked').next().children().html());
     checkSubmittedAnswer(selectedAnswer);
   });
 }
@@ -103,7 +108,8 @@ function checkSubmittedAnswer(answer) {
   if(answer === 2) {
     console.log("correct");
     $('#game-board').addClass('animated tada');
-    clientIo.emit('endRound', "Taylor won");
+    clientIo.emit('endRound', "");
+    // location.reload();
   } else {
     $('#game-board').addClass('animated shake');
     console.log("incorrect");
