@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 var User = require('../models/User');
+var Trophy = require('../models/Trophy');
 var usersController = require('../controllers/usersController');
 var trophiesController = require('../controllers/trophiesController');
 

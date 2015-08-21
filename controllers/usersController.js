@@ -18,7 +18,7 @@ function mainGame(req, res) {
 }
 
 function createUser(req, res, next) {
-  var user = new User(reqbody.user);
+  var user = new User(req.body.user);
   User.save(function(err){
     if (err) res.json({message: 'Could not create user b/c:' + err});
   });
@@ -26,7 +26,7 @@ function createUser(req, res, next) {
 }
 
 function showUser(req, res, next) {
-  var user = User.findById({_id: req.params.id}, function(err, user){
+  User.findById({_id: req.params.id}, function(err, user){
     if(err) res.json({message: 'Could not find that user b/c:' + err});
     res.render('users/show', {user: req.user});
   });
