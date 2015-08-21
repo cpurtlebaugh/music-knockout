@@ -10,9 +10,9 @@
       <% include ../partials/nav.ejs %>
     </nav>
     <div class = 'form-container signup z-depth-2'>
-      <h3>Current User</h3>
+      <h3><%= user.first_name %></h3>
       <div class="row">
-        <form class="col s12" action="/register" method="post">
+        <form class="col s12" action="/users/<%= user._id %>?_method=PUT" method="POST">
           <div class="row">
             <div class="input-field col s6">
               <input id="first_name" type="text" class="validate" name="first_name">
@@ -25,22 +25,21 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="age" type="text" class="validate" name="age">
+              <input id="age" type="number" class="validate" name="age">
               <label for="age">Age</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="image_url" type="image_url" class="validate" name="image_url">
-              <label for="image_url">Image Url:</label>
+              <input id="image_url" type="text" class="validate" name="image_url">
+              <label for="image_url">Image http://</label>
             </div>
           </div>
           <div class="row">
-          <button class="btn waves-effect waves-light left" type="submit" name="action" value="Register">Register
-          </button>
-          <br><br><br>
-          <div class="fb-login-button" id="fb-login" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" onlogin="postlogin" data-default-audience="everyone">
-          </div>
+            <br>
+          <!-- <input type="submit" class="btn waves-effect waves-light left" value="Update">Update -->
+            <button class="btn waves-effect waves-light left" type="submit" name="action">Update
+            </button>
           </div>
         </form>
       </div>
