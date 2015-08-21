@@ -50,12 +50,10 @@ $(document).ready(function() {
 
   clientIo.on('endRound', function(data) {
     clearBoard();
-<<<<<<< HEAD
+
     location.reload(true);
-=======
-    location.reload()
     // clientIo.emit('startRound');
->>>>>>> api-feature
+
   });
 
 
