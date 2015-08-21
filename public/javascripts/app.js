@@ -93,7 +93,7 @@ function appendSongToBody() {
   $('#game-board').append(gameTable);
 
     //First, append the embedded hidden player;
-  $('#game-board').append('<audio id="song-player" style="display: none" src="' +
+  $('body').append('<audio id="song-player" style="display: none" src="' +
     game.currentSong.previewUrl + '"' + 'preload="auto" controls autoplay></audio>');
 
   $('#game-table').on('submit', function(){
