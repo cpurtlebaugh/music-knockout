@@ -33,7 +33,6 @@ function showUser(req, res, next) {
 }
 
 function editUser(req, res) {
- // Edit view still needs to display all candies...
  User.find(function(err, users) {
    if(err) res.json({message: 'Could not find user b/c:' + err});
    User.findById(req.params.id, function(err, user) {
@@ -43,33 +42,30 @@ function editUser(req, res) {
  });
 }
 
-function updateUser(req, res) {
 
-       // use our user model to find the bear we want
-       user.findById(req.params.user_id, function(err, user) {
+function updateUser(req, res, next) {
+  var id = req.params.id;
 
-           if (err)
-               res.send(err);
+  User.findById({_id: id}, function(error, user) {
+    if (error) res.json({message: 'Could not find user because ' + error});
 
-                // username: req.body.username,
-                // first_name: req.body.first_name,
-                // last_name: req.body.last_name,
+    if (req.body.first_name) user.first_name = req.body.first_name;
+    if (req.body.last_name) user.last_name = req.body.last_name;
+    if (req.body.age) user.age = req.body.age;
+    if (req.body.image_url) user.image_url = req.body.image_url;
 
-           // save the user
-           user.save(function(err) {
-               if (err)
-                   res.send(err);
+    user.save(function(error) {
+      if (error) res.json({message: 'user successfully updated'});
+      res.redirect('/users/' + id);
+    });
+  });
+}
 
-               res.json({ message: 'User updated!' });
-           });
-
-       });
-   }
 
 function deleteUser(req, res, next) {
   User.findByIdAndRemove(req.params.id, function(err){
-    if (err) res.json({message: 'Could not find that user b/c' + err})
-      res.redirect('/')
+    if (err) res.json({message: 'Could not find that user b/c' + err});
+      res.redirect('/');
   });
 }
 
@@ -82,4 +78,4 @@ module.exports = {
   mainGame:   mainGame,
   updateUser: updateUser,
   deleteUser: deleteUser
-}
+};

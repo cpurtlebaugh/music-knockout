@@ -167,10 +167,15 @@ footer h5 {
   width: 500px; 
 }
 
-.info-table {
+.info-cube {
   background: #ffffff;
   height: 500px;
+  border-radius: 10px;
   
+}
+
+.profile-table {
+
 }
 
 .info-box h3{
@@ -184,15 +189,11 @@ footer h5 {
   left:680px;
 }
 
-#addInfo {
-  position: absolute;
-  cursor: pointer;
-  height: 300px;
-  width: 300px;
-  background: #ffffff;
-  color: lightBlue;
+img.img-container {
+  border: 1px solid black;
+  border-radius: 100px;
+  padding: 0;
 }
-
 
 
 /*
