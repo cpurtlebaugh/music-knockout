@@ -193,6 +193,10 @@ footer h5 {
 
 }
 
+.profile-table tr {
+  margin: 0 40px;
+}
+
 img.img-container {
   border-radius: 100px;
   height: 200px;  
@@ -215,6 +219,22 @@ img.img-container {
   height: 700px;
 }
 
+.trophy-case {
+  height: 450px;
+  width:700px;
+  background: rgba(0, 0, 0, .5);
+  margin: 150px auto;
+  text-align: justify;
+  color: #ffffff;
+  padding:15px;
+  border-radius: 15px;
+
+}
+
+.trophy-case h3 {
+  text-align: left;
+  font-weight: bold;
+}
 
 /*user's edit page
 */
