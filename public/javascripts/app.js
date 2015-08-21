@@ -26,11 +26,12 @@ $(document).ready(function() {
   clientIo.on('startRound', function(data) {
     console.log("Start your engines!", data);
     game = data;
+    clearBoard();
+    appendSongToBody();
   });
 
   clientIo.on('playSong', function(data) {
     game = data;
-    appendSongToBody();
   });
 
   // clientIo.on('multiChioce', function(data) {
@@ -48,11 +49,17 @@ $(document).ready(function() {
   });
 
   clientIo.on('endRound', function(data) {
-    console.log(data);
+    clearBoard();
+    clientIo.emit('startRound');
   });
 
 
 });
+
+function clearBoard() {
+  $('#song-player').remove();
+  $('#game-table').remove();
+}
 
 function appendSongToBody() {
 

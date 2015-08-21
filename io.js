@@ -62,15 +62,17 @@ game.startRound();
 
 serverIo.on('connection', function(socket) {
 
+
   api.getGameQuestion(function(getGameQuestion){
     serverIo.emit('startRound', getGameQuestion);
   });
+
 
   socket.emit('user-connected', api.getGameQuestion);
 
   socket.on('endRound', function(data){
     serverIo.emit('endRound', data);
-  })
+  });
 
   // When client's connect
   console.log('Client connected to socket.io!');
