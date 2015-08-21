@@ -23,8 +23,7 @@ Game.prototype.startRound = function() {
 
 Game.prototype.playSong = function() {
   this.status = 'playSong';
-
-  console.log(api.game);
+  console.log('playSong');
   setTimeout(this.multiChoice.bind(this), 2000);
 };
 
