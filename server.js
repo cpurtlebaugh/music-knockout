@@ -11,6 +11,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Facebook = require('./config/facebook.js');
 var routes = require('./routes/index');
+var methodOverride = require('method-override');
 
 //FOR OAUTH
 passport.serializeUser(function(user, done) {
@@ -36,6 +37,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 

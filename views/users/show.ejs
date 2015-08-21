@@ -9,35 +9,35 @@
     <nav>
       <% include ../partials/nav.ejs %>
     </nav>
-    <div class = 'container info-box'>
-      <h3>Hey You!</h3>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" name="first_name">
-          <label for="first_name">First Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" name="last_night">
-          <label for="last_name">Last Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="age" type="text" class="validate" name="age">
-          <label for="age">Age</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="image_url" type="image_url" class="validate" name="image_url">
-          <label for="image_url">Image Url:</label>
-        </div>
-      </div>
+    <div class ='container info-box info-cube'>
+      <div class= 'centered'>
+        <table class="responsive-table centered profile-table">
+          
+          <tbody>
+             <tr>
+              <td><h3>Hey <%= user.first_name %>!</h3></td>
+              <td class="img-container"><img src="<%= user.image_url %>" alt=""></td>
+            </tr>
+            <tr>
+              <td>First Name:</td>
+              <td><%= user.first_name %></td>
+            </tr>
+            <tr>
+              <td>Last Name:</td>
+              <td><%= user.last_name %></td>
+            </tr>
+            <tr>
+              <td>Age:</td>
+              <td><%= user.age %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>  
 
-      <div class="row">
-      <button class="btn waves-effect waves-light left" type="submit" name="action" value="Register">Edit
-      </button>
-      </div>
+        <br>
+      <a href= "/users/<%= user._id %>/edit"><button class="btn waves-effect waves-light edit-button centered" type="submit" name="action" value="Edit">Edit
+      </button></a>
+        
     </div>
   <footer>
     <% include ../partials/footer.ejs %>
@@ -46,3 +46,4 @@
   </body>
 </html>
 
+<!-- col s12 m12 l12 offset-by-6 -->
