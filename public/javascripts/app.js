@@ -103,8 +103,8 @@ function checkSubmittedAnswer(answer) {
   if(answer === 2) {
     console.log("correct");
     $('#game-board').addClass('animated tada');
-    clientIo.emit('endRound', "");
     location.reload();
+    clientIo.emit('endRound', "");
   } else {
     $('#game-board').addClass('animated shake');
     console.log("incorrect");
