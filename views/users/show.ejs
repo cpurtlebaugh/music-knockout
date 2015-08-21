@@ -14,9 +14,9 @@
         <table class="responsive-table centered profile-table">
           
           <tbody>
-             <tr>
-              <td><h3>Hey <%= user.first_name %>!</h3></td>
-              <td><img class="img-container" src="<%= user.image_url %>" alt=""></td>
+            <tr>
+              <td><h3>Hey<br> <%= user.first_name %>!</h3></td>
+              <td><img class='img-container' src='<%= user.image_url %>' alt=''></td>
             </tr>
             <tr>
               <td>First Name:</td>
@@ -35,7 +35,7 @@
       </div>  
 
         <br>
-      <a href= "/users/<%= user._id %>/edit"><button class="btn waves-effect waves-light edit-button centered" type="submit" name="action" value="Edit">Edit
+      <a href= "/users/<%= user._id %>/edit"><button class="btn waves-effect waves-light edit-button col s4 m2 l2 offset-l4" type="submit" name="action" value="Edit">Edit
       </button></a>
         
     </div>
@@ -45,5 +45,3 @@
 
   </body>
 </html>
-
-<!-- col s12 m12 l12 offset-by-6 -->

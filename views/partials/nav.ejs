@@ -1,12 +1,13 @@
 <div class="nav-wrapper">
   <a href="/" class="brand-logo">Music KO</a>
-  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">Responsiv</i></a>
+  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">Music KO</i></a>
   <ul class="right hide-on-med-and-down">
     <li><a href="/">Home</a></li>
     <% if (login) { %>
       <li><a href="/users/<%= current_user._id %>/trophies">Your Trophies</a></li>
       <li><a href="/users/<%= current_user._id %>">Profile</a></li>
       <li><a href="/logout">Logout</a></li>
+      <li><a href="/game">Play the Game!</li>
     <% } else { %>
       <li><a href="/login">Login</a></li>
       <li><a href="/register">Sign Up</a></li>
