@@ -69,29 +69,31 @@ function appendSongToBody() {
   var gameTable =
   '<form action="#" id="game-table" class="animated bounceInDown"><p>' +
     '<input name="group1" type="radio" id="ans1" /><label for="ans1">' +
-      songList[0][0] + ' - ' + songList[0][1] +
+      songList[0][0] + ' - ' + songList[0][1] + '<span style="display: none">' + songList[0].length + '</span>' +
     '</label></p><p><input name="group1" type="radio" id="ans2" /><label for="ans2">' +
-      songList[1][0] + ' - ' + songList[1][1] +
+      songList[1][0] + ' - ' + songList[1][1] + '<span style="display: none">' + songList[1].length + '</span>' +
     '</label></p><p><input class="group1" name="group1" type="radio" id="ans3"  /><label for="ans3">'  +
-      songList[2][0] + ' - ' + songList[2][1] +
+      songList[2][0] + ' - ' + songList[2][1] + '<span style="display: none">' + songList[2].length + '</span>' +
     '</label></p><p><input name="group1" type="radio" id="ans4" /><label for="ans4">' +
-      songList[3][0] + ' - ' + songList[3][1] +
+      songList[3][0] + ' - ' + songList[3][1] + '<span style="display: none">' + songList[3].length + '</span>' +
     '</label></p><p><input name="group1" type="radio" id="ans5" /><label for="ans5">' +
-      songList[4][0] + ' - ' + songList[4][1] +
+      songList[4][0] + ' - ' + songList[4][1] + '<span style="display: none">' + songList[4].length + '</span>' +
     '</label></p><p><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></p>' +
   '</form>';
+
+  console.log(gameTable);
 
   // Append the table to the game-board:
   $('#game-board').append(gameTable);
 
   $('#game-table').on('submit', function(){
-    var selectedAnswer = $('input:checked').next().html().split(' - ');
+    var selectedAnswer = parseInt($('input:checked').next().children().html())
     checkSubmittedAnswer(selectedAnswer);
   });
 }
 
 function checkSubmittedAnswer(answer) {
-  if(answer[0] === game.currentSong.track && answer[1] === game.currentSong.artist) {
+  if(answer === 2) {
     console.log("correct");
     $('#game-board').addClass('animated tada');
     clientIo.emit('endRound', "Taylor won");
