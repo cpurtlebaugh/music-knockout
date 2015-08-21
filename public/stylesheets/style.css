@@ -31,6 +31,7 @@ title {
   color: #fff;
   height: 400px;
   background-color: #333;
+  text-align: center;
 }
 
 /*second container on index page*/
@@ -49,6 +50,11 @@ title {
   background-color: #ffffff;
   padding:0 20px;
   border-radius: 30px;
+}
+
+.welcome-forms p{
+  text-align: center;
+  font-size: 3em;
 }
 
 .playnow {
@@ -92,7 +98,9 @@ nav {
   position: fixed;
   top: 0;
   z-index: 3;
+  display: inline;
 }
+
 
 /*forms*/
 
@@ -185,16 +193,56 @@ footer h5 {
 
 }
 
+.profile-table tr {
+  margin: 0 40px;
+}
+
 img.img-container {
-  border: 1px solid black;
   border-radius: 100px;
-  height:200px;  
+  height: 200px;  
 }
 
 .update-button {
   margin: 0 147px;
 }
 
+/*trophies page*/
+
+.back-img {
+  background: url("/images/musicknockouttrophies.gif");
+  position: static;
+  background-size: cover;
+
+}
+
+.trophy-space {
+  height: 700px;
+}
+
+.trophy-case {
+  height: 450px;
+  width:700px;
+  background: rgba(0, 0, 0, .5);
+  margin: 150px auto;
+  text-align: justify;
+  color: #ffffff;
+  padding:15px;
+  border-radius: 15px;
+
+}
+
+.trophy-case h3 {
+  text-align: left;
+  font-weight: bold;
+}
+
+/*user's edit page
+*/
+
+.edit-background {
+background: url("/images/musicknockoutredblue.gif");
+background-size: cover;
+}
 
 /*
 .overlay {
