@@ -1,7 +1,6 @@
 console.log('connected JS file');
 var game;
 
-
 // make socket global
 var clientIo;
 
@@ -26,6 +25,7 @@ $(document).ready(function() {
 
   clientIo.on('startRound', function(data) {
     console.log("Start your engines!", data);
+    game = data;
   });
 
   clientIo.on('playSong', function(data) {
@@ -58,21 +58,26 @@ function appendSongToBody() {
 
   //First, append the embedded hidden player;
   $('body').append('<audio id="song-player" style="display: none" src="' +
-    game.currentSong.preview + '"' + 'preload="auto" controls autoplay></audio>');
+    game.currentSong.previewUrl + '"' + 'preload="auto" controls autoplay></audio>');
+
+    var currentSongArray = [game.currentSong.currentSongArray];
+    var songList = game.wrongTracks.concat(currentSongArray);
+    songList = _.shuffle(songList);
+    console.log(songList);
 
   // Create the table to append:
   var gameTable =
   '<form action="#" id="game-table" class="animated bounceInDown"><p>' +
     '<input name="group1" type="radio" id="ans1" /><label for="ans1">' +
-      game.songList[0][0] + ' - ' + game.songList[0][1] +
+      songList[0][0] + ' - ' + songList[0][1] +
     '</label></p><p><input name="group1" type="radio" id="ans2" /><label for="ans2">' +
-      game.songList[1][0] + ' - ' + game.songList[1][1] +
+      songList[1][0] + ' - ' + songList[1][1] +
     '</label></p><p><input class="group1" name="group1" type="radio" id="ans3"  /><label for="ans3">'  +
-      game.songList[2][0] + ' - ' + game.songList[2][1] +
+      songList[2][0] + ' - ' + songList[2][1] +
     '</label></p><p><input name="group1" type="radio" id="ans4" /><label for="ans4">' +
-      game.songList[3][0] + ' - ' + game.songList[3][1] +
+      songList[3][0] + ' - ' + songList[3][1] +
     '</label></p><p><input name="group1" type="radio" id="ans5" /><label for="ans5">' +
-      game.songList[4][0] + ' - ' + game.songList[4][1] +
+      songList[4][0] + ' - ' + songList[4][1] +
     '</label></p><p><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></p>' +
   '</form>';
 

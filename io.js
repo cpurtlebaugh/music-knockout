@@ -62,7 +62,11 @@ game.startRound();
 
 serverIo.on('connection', function(socket) {
 
-  socket.emit('user-connected', api.game);
+  api.getGameQuestion(function(getGameQuestion){
+    serverIo.emit('startRound', getGameQuestion);
+  });
+
+  socket.emit('user-connected', api.getGameQuestion);
 
   socket.on('endRound', function(data){
     serverIo.emit('endRound', data);

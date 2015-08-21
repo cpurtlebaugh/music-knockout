@@ -109,10 +109,11 @@ var createWrongTrack = function(track) {
 var buildGameQuestionObject = function(currentSong, wrongTracks) {
   // get current song data
   var currentSong = {
-    artistName: artistsNames(chosenTrack.artists),
-    trackName:  chosenTrack.name,
-    previewUrl: chosenTrack.preview_url,
-    apiId:      chosenTrack.id
+    artistName:       artistsNames(chosenTrack.artists),
+    trackName:        chosenTrack.name,
+    previewUrl:       chosenTrack.preview_url,
+    apiId:            chosenTrack.id,
+    currentSongArray: [chosenTrack.name, artistsNames(chosenTrack.artists)]
   };
 
   // get wrong song data
@@ -165,7 +166,7 @@ var getGameQuestion = function(callback) {
         // console.log("10. Final Game Question Object: ", gameQuestionObject);
 
         // pass object to callbak
-        callback(gameQuestionObject)
+        callback(gameQuestionObject);
       });
     });
   });
