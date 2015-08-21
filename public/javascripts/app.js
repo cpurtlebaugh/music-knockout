@@ -50,7 +50,8 @@ $(document).ready(function() {
 
   clientIo.on('endRound', function(data) {
     clearBoard();
-    clientIo.emit('startRound');
+    location.reload()
+    // clientIo.emit('startRound');
   });
 
 
@@ -103,8 +104,8 @@ function checkSubmittedAnswer(answer) {
   if(answer === 2) {
     console.log("correct");
     $('#game-board').addClass('animated tada');
-    location.reload();
     clientIo.emit('endRound', "");
+    // location.reload();
   } else {
     $('#game-board').addClass('animated shake');
     console.log("incorrect");
